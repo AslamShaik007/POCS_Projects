@@ -1,0 +1,11 @@
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ item_form.as_p }}
+    <!-- <option value="{{ category.id }}">{{ item_form.category_name }}</option> -->
+    {{ formset.management_form }}
+    {% for form in formset %}
+        {{ form.as_p }}
+        
+    {% endfor %}
+    <button type="submit">Save</button>
+</form>

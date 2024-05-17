@@ -1,0 +1,166 @@
+{% extends 'controlPanel/includes/base.html' %}
+{% load static %} <!-- THIS IS TO LOAD THE STATIC FOLDER -->
+
+<!-- THIS IS FOR PAGE TITLE -->
+{% block title %}
+  {{page_title}}
+{% endblock title %}
+
+<!-- THIS IS FOR ADDITIONAL CSS -->
+{% block udstyles %}
+    <style>
+      .custom-active3{
+        text-decoration: none;
+        color: #fff;
+        background: #8d72e1;
+        border-radius: 5px;
+      }
+    </style>
+
+{% endblock udstyles %}
+
+<!-- THIS IS FOR CONTENTS OF THE PAGE -->
+{% block pagecontents %}
+
+    <section id="content-wrapper" class="mb-5">
+        <div class="row mt-3 p-2">
+            <div class="col-md-6">
+                <div class="breadcrumb-wrapper">
+                    <span>
+                        <a title="" href="{% url 'dashboard' %}">
+                            <i class="fa fa-angle-left fa-dlt" aria-hidden="true"></i> &nbsp;&nbsp;Dashboard </a>
+                    </span>
+                    <span class="ttm-bread-sep"> / </span>
+                    <span>
+                        <a title="" href="{% url 'list_item' %}">Item</a>
+                    </span>
+                    <span class="ttm-bread-sep"> / </span>
+                    <span> Update Item </span>
+                </div>
+            </div>
+            <div class="col-md-6"></div>
+        </div>
+
+        <div class="container">
+          <h2>Dynamic Tabs</h2>
+          <p>To make the tabs toggleable, add the data-toggle="tab" attribute to each link. Then add a .tab-pane class with a unique ID for every tab and wrap them inside a div element with class .tab-content.</p>
+        
+          <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+            <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+            <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+            <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
+          </ul>
+        
+          <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+              <h3>HOME</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+            <div id="menu1" class="tab-pane fade">
+              <h3>Menu 1</h3>
+              <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <div id="menu2" class="tab-pane fade">
+              <h3>Menu 2</h3>
+              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+            </div>
+            <div id="menu3" class="tab-pane fade">
+              <h3>Menu 3</h3>
+              <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            </div>
+          </div>
+        </div>
+        
+        </div>
+    </section>
+        
+{% endblock pagecontents %}
+
+{% block udfooterscripts %}
+
+    <script type="text/javascript">
+
+      $("#udformsubmit").on("submit",function (e) {
+        e.preventDefault();
+        $('#udBtn').text('Please Wait...');
+        // $('#udBtn').setAttribute("disabled","disabled");
+        document.getElementById('udBtn').setAttribute("disabled","disabled");
+
+        $.ajax({
+          url : "{% url 'update_item' data.id %}",
+          type : "POST",
+          data : new FormData(this),
+          processData : false,
+          dataType : 'json',
+          contentType:false,
+          {% comment %} beforeSend:function(){
+              $(document).find('span.error-text').text('');
+          }, {% endcomment %}
+          success: function(result)
+          {
+            $('#udBtn').text('Save');
+            // $('#udBtn').removeAttribute('disabled');
+            document.getElementById('udBtn').removeAttribute("disabled");
+
+            if(result.response == 'success'){
+              swal({
+                  title: "Success",
+                  type: "success",
+                  text: result.msg,
+                  confirmButtonColor: "#007bff",
+                  confirmButtonText: "Ok",
+                  closeOnConfirm: true
+              })
+              .then(function(){
+                location.reload();
+              });
+
+            }else if(result.response == 'notSaved'){
+              swal({
+                title: result.title,
+                type: result.icon,
+                text: result.msg,
+                confirmButtonColor: "#007bff",
+                confirmButtonText: "Ok",
+                closeOnConfirm: true
+              })
+              .then(function(){
+                location.reload();
+              });
+
+            }else{
+              swal({
+                title: "Error",
+                type: "warning",
+                text: "Something went wrong! Please try again",
+                confirmButtonColor: "#007bff",
+                confirmButtonText: "Ok",
+                closeOnConfirm: true
+              })
+              .then(function(){
+                location.reload();
+              });
+            }
+        },
+        error: function(response)
+        {
+          $('#udBtn').text('Submit');
+          document.getElementById('udBtn').removeAttribute("disabled");
+          swal({
+            title: "Error",
+            type: "warning",
+            text: "Something went wrong! Please try again!",
+            confirmButtonColor: "#007bff",
+            confirmButtonText: "Ok",
+            closeOnConfirm: true
+          })
+          .then(function(){
+            location.reload();
+          });
+        }
+        });
+      });
+    </script>
+
+{% endblock udfooterscripts %}

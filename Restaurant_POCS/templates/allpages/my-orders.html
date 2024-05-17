@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+
+<!-- Meta -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Title -->
+<title>Soup - Restaurant with Online Ordering System Template</title>
+
+
+{% include 'include/topstyle.html' %}
+</head>
+
+<body>
+
+<!-- Body Wrapper -->
+<div id="body-wrapper-" class="animsition-">
+    {% include 'include/header.html' %}
+    
+    <div class="header-title ken-burn-out white" data-parallax="scroll" data-position="top" data-natural-width="1920" data-natural-height="850" style="background:url(/static/assets2/images/bg-29.jpg)">
+        <div class="container">
+            <div class="title-base">
+                <hr class="anima" />
+                <h1>My Order Details</h1>
+                <p>Find below your order History</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div id="content">
+     <!---{{cart_items}}-->
+
+ 
+        <!-- Section -->
+        <section class="section-ch bg-light">
+            <div class="container">
+            <form class="" action="{% url 'checkout' %}" method="POST">
+                {% csrf_token %}
+                <div class="row">   
+                    <div class="col-xl-12  col-lg-12">
+                        <div class="shadow bg-white stick-to-content mb-4">
+                            <div class="bg-dark dark p-4"><h5 class="mb-0">Order History</h5></div>  
+                            {% if order_history|length > 0 %}
+                            <table style="width:100%;">
+                                <tr>
+                                    <td class="col-9 text-left text-muted title">
+                                        <span class="name">S.No.</span>
+                                    </td>
+                                    <td class="col-3 " style="padding-left: 10px;">Image</td>
+                                    <td class="col-3 " style="padding-left: 10px;">Items</td>
+                                    <td class="col-3 " style="padding-left: 10px;">Price</td>
+                                    <td class="col-3 " style="padding-left: 10px;">Quantity</td>
+                                    <td class="col-3 " style="padding-left: 10px;">Special Instructions</td>
+                                    <td class="col-3 " style="padding-left: 10px;">Created At</td>
+                                    <td class="col-3 " style="padding-left: 10px;">Total</td>  
+                                </tr>
+                            
+                            
+                                {% for items_data in order_history %}
+                                <tr>
+                                    <td class="col-3">
+                                        <span class="name">{{ forloop.counter }}</span>
+                                    </td>
+                                    <td class="col-3 " style="padding-left: 10px;">
+                                        <img style="width: 100px; height: 100px;border: 1px solid #fff; margin: 10px;"
+                                            src="{{MEDIA_URL}}{{items_data.item_image}}" alt="">
+                                    </td>
+                                    <td class="col-3 " style="padding-left: 10px;">{{items_data.item_name}}
+                                        <div> <strong>Sub Item : </strong>{% for subitem in items_data.subitems %}
+                                            {{subitem}},
+                                            {%endfor%}
+                                        </div>
+                            
+                                    </td>
+                                    <td class="col-3 " style="padding-left: 10px;">$ {{items_data.itemprice}}
+                                        <div>{% for subitemprice in items_data.subitems_price %}
+                                            $ {{subitemprice}},
+                                            {%endfor%}
+                                        </div>
+                                        <input type="hidden" name='itemprice{{items_data.item_id}}' id='itemprice{{items_data.item_id}}'
+                                            value='{{items_data.total_price}}'>
+                                    </td>
+                                    <td class="col-3 " style="padding-left: 10px;">{{items_data.quantity}}
+                                        
+                                        <input type="hidden" name='itemprice{{items_data.item_id}}' id='itemprice{{items_data.item_id}}'
+                                            value='{{items_data.quantity}}'>
+                                    </td>
+                                    <td class="col-3 " style="padding-left: 10px;"><span
+                                        id="totalprice{{items_data.item_id}}">{{items_data.special_instructions}}</span></td>
+                                    </td>
+                                    <td class="col-3 " style="padding-left: 10px;"><span
+                                        id="totalprice{{items_data.item_id}}">{{items_data.created_at}}</span></td>
+                                    </td>
+                                    <td class="col-3 " style="padding-left: 10px;">$ <span
+                                            id="totalprice{{items_data.item_id}}">{{items_data.total_price}}</span></td>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            
+                            </table>
+                            {% else %}
+                            <table style="width:100%;">
+                                <tr>
+                                    <td class="col-9 text-left text-muted title">
+                                        <span class="name">S.No.</span>
+                                    </td>
+                                    <td class="col-3 " style="padding-left: 10px;">Image</td>
+                                    <td class="col-3 " style="padding-left: 10px;">Items</td>
+                                    <td class="col-3 " style="padding-left: 10px;">Price</td>
+                                    <td class="col-3 " style="padding-left: 10px;">Quantity</td>
+                                    <td class="col-3 " style="padding-left: 10px;">Created At</td>
+                                    <td class="col-3 " style="padding-left: 10px;">Total</td>
+                                </tr> 
+                                <tr>
+                                    <td class="col-9 text-muted title;" colspan="7" style="text-align: center;">
+                                        Order History is empty
+                                    </td>
+                                    
+                                </tr>
+                            </table>
+                            {% endif %}
+                            
+                            <div class="cart-summary">                                                              
+                                <hr class="hr-sm">
+                                <div class="pd text-md">
+                                    <div class="col-9 text-left text-muted">Grand Total:</div>
+                                    {% if order_history|length > 0 %} 
+                                    <div class="col-3"><strong>$ <span id="grandtotal">{{finaltotal}}</span></strong> </div>
+                                    {% else %}
+                                    <div class="col-3"><strong>$ <span id="grandtotal">0</span></strong> </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+
+        </section>
+
+       
+
+    </div>
+    <!-- Content / End -->
+    {% include 'include/footer.html' %}
+</body> 
+</html>

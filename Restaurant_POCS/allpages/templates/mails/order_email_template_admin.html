@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Details</title>
+</head>
+<body>
+    <div class="mt-8">
+    <h4>New Order Details</h4>
+    <p>Dear {{admin_name}},</p>
+    <p>I hope this email finds you well. We are delighted to inform you that a new order has been placed through our online ordering system. Here are the details of the order:</p>
+
+
+    <ul class="list-check text-lg mb-0">
+        <li>Item Name: {{item_name}}</li>
+        <li>Total: ${{total_price}}</li>
+    </ul>
+ 
+    <h4>Customer Details</h4>
+    <ul class="list-check text-lg mb-0">
+        <li>Name: {{name}}</li>
+        <li>Email: {{email}}</li>
+        <li>Phone: {{phone_number}}</li>
+        <li>Ip Adress: {{ip_address}}</li>
+    </ul>
+
+    <h4>Adress Details</h4>
+    <ul class="list-check text-lg mb-0">
+        <li>Street Number: {{street_number}}</li>
+        <li>City: {{city}}</li>
+    </ul>
+
+    <p>Best regards,<br>
+    Restaurant Team</p>
+    </div>
+</body>
+</html>

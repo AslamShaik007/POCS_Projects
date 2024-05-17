@@ -1,0 +1,195 @@
+{% extends 'controlPanel/includes/base.html' %}
+{% load static %} <!-- THIS IS TO LOAD THE STATIC FOLDER -->
+
+<!-- THIS IS FOR PAGE TITLE -->
+{% block title %}
+  {{page_title}}
+{% endblock title %}
+
+<!-- THIS IS FOR ADDITIONAL CSS -->
+{% block udstyles %}
+    <style>
+      .custom-active3{
+        text-decoration: none;
+        color: #fff;
+        background: #8d72e1;
+        border-radius: 5px;
+      }
+    </style>
+
+{% endblock udstyles %}
+
+<!-- THIS IS FOR CONTENTS OF THE PAGE -->
+{% block pagecontents %}
+
+    <section id="content-wrapper" class="mb-5">
+        <div class="row mt-3 p-2">
+            <div class="col-md-6">
+                <div class="breadcrumb-wrapper">
+                    <span>
+                        <a title="" href="{% url 'dashboard' %}">
+                            <i class="fa fa-angle-left fa-dlt" aria-hidden="true"></i> &nbsp;&nbsp;Dashboard </a>
+                    </span>
+                    <span class="ttm-bread-sep"> / </span>
+                    <span>
+                        <a title="" href="{% url 'list_testimonial' %}">Testimonial</a>
+                    </span>
+                    <span class="ttm-bread-sep"> / </span>
+                    <span> Update Testimonial </span>
+                </div>
+            </div>
+            <div class="col-md-6"></div>
+        </div>
+        <div class="row  g-6 mb-6 mt-3">
+            <div class="col-md-10 col-sm-12">
+              <div class="card p-4" style="margin-left: 30px !important; box-shadow: 10px 10px 10px #9f9f9f !important;">
+                    <h2 class="text-muted h-2">Update Testimonial</h2>
+                    <div class="row  mt-4">
+                        <div class="col-lg-12 mt">
+                            <form id="udformsubmit" class="udformsubmit" enctype= "multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row g-3">
+
+                                    <div class="col-md-4 form_field">
+                                        <div class="author">
+                                          <label for="author" class="form-label">Name <span id="star_error_ud">*</span></label>
+                                          <input type="text" value="{% if data.author %}{{data.author}}{% endif %}" class="form-control" id="author" name="author" placeholder="Name" required />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-4 form_field">
+                                        <div class="author">
+                                          <label for="content" class="form-label">Comments <span id="star_error_ud">*</span></label>
+                                          <textarea type="text" class="form-control" id="content" name="content" placeholder="Long Description">{% if data.content %}{{data.content}}{% endif %}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 form_field">
+                                      <div class="author_image">
+                                        <label for="abc" class="form-label">Image</label>
+                                        <input type="file" value="" class="form-control" id="author_image" name="author_image" placeholder="Image" {% if data.author_image == '' %}{{'required'}}{% endif %}/>
+                                      </div>
+                                  </div>
+
+                                    <div class="col-md-4 form_field">
+                                        <label for="status-time" class="form-label">Select Status <span id="star_error_ud">*</span>
+                                        </label>
+                                        <select class="form-select" aria-label="Default select example" name="status" id="status" required>
+                                            <option disabled="disabled" selected="selected" value="">Select Status</option>
+                                            <option {% if data.status == 1 %}selected{% endif %} value="1">Active</option>
+                                            <option {% if data.status == 0 %}selected{% endif %} value="0">Inactive</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-4 form_field">
+                                        <div class="editShiftFormField">
+                                          <label for="abc" class="form-label">Display Order <span id="star_error_ud">*</span></label>
+                                          <input type="number" value="{% if data.display_order %}{{data.display_order}}{% endif %}" class="form-control" id="display_order" name="display_order" placeholder="Display Order" required/>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal-footer">
+                                        <div class="d-grid gap-2 d-md-block d-md-flex justify-content-end">
+                                            <button type="button" class="btn btn-light btn-cancel btn-sm" onclick="window.location.href='{% url 'list_testimonial' %}'">Back </button>
+                                            <button type="submit" id="udBtn" class="btn btn-primary btn-violet">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+        
+{% endblock pagecontents %}
+
+{% block udfooterscripts %}
+
+    <script type="text/javascript">
+
+      $("#udformsubmit").on("submit",function (e) {
+        e.preventDefault();
+        $('#udBtn').text('Please Wait...');
+        // $('#udBtn').setAttribute("disabled","disabled");
+        document.getElementById('udBtn').setAttribute("disabled","disabled");
+
+        $.ajax({
+          url : "{% url 'update_testimonial' data.id %}",
+          type : "POST",
+          data : new FormData(this),
+          processData : false,
+          dataType : 'json',
+          contentType:false,
+          {% comment %} beforeSend:function(){
+              $(document).find('span.error-text').text('');
+          }, {% endcomment %}
+          success: function(result)
+          {
+            $('#udBtn').text('Save');
+            // $('#udBtn').removeAttribute('disabled');
+            document.getElementById('udBtn').removeAttribute("disabled");
+
+            if(result.response == 'success'){
+              swal({
+                  title: "Success",
+                  type: "success",
+                  text: result.msg,
+                  confirmButtonColor: "#007bff",
+                  confirmButtonText: "Ok",
+                  closeOnConfirm: true
+              })
+              .then(function(){
+                location.reload();
+              });
+
+            }else if(result.response == 'notSaved'){
+              swal({
+                title: result.title,
+                type: result.icon,
+                text: result.msg,
+                confirmButtonColor: "#007bff",
+                confirmButtonText: "Ok",
+                closeOnConfirm: true
+              })
+              .then(function(){
+                location.reload();
+              });
+
+            }else{
+              swal({
+                title: "Error",
+                type: "warning",
+                text: "Something went wrong! Please try again",
+                confirmButtonColor: "#007bff",
+                confirmButtonText: "Ok",
+                closeOnConfirm: true
+              })
+              .then(function(){
+                location.reload();
+              });
+            }
+        },
+        error: function(response)
+        {
+          $('#udBtn').text('Submit');
+          document.getElementById('udBtn').removeAttribute("disabled");
+          swal({
+            title: "Error",
+            type: "warning",
+            text: "Something went wrong! Please try again!",
+            confirmButtonColor: "#007bff",
+            confirmButtonText: "Ok",
+            closeOnConfirm: true
+          })
+          .then(function(){
+            location.reload();
+          });
+        }
+        });
+      });
+    </script>
+
+{% endblock udfooterscripts %}

@@ -1,0 +1,403 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 10]> <html  lang="en" class="iex"> <![endif]-->
+<!--[if (gt IE 10)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<!-- Mirrored from templates.framework-y.com/gourmet/pages/index-main.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 24 Apr 2024 08:34:09 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home | Main | Gourmet</title>
+    <meta name="description" content="Multipurpose HTML template.">
+    {% include 'include/topstyle.html' %}
+    <!-- Extra optional content header -->
+</head>
+<body>
+    <div class="footer-parallax-container">
+        {% include 'include/header.html' %}
+        <div class="section-bg-video grunge-border">
+            <div class="bg-overlay transparent-dark"></div>
+            <div class="videobox">
+                <img src="/static/assets2/images/Banner-image.jpg" alt="" />
+            </div>
+            <div class="container content overlay-content white text-center" data-anima="fade-top" data-timeline="asc" data-time="1000">
+                <hr class="space" />
+                <hr class="space" />
+                <h5 class="text-uppercase anima">If music be the food of love play on</h5>
+                <h2 class="text-bold text-xxl anima">RESTAURANT</h2>
+                <hr class="space xs" />
+                <p class="anima">
+                    Food, in the end, in our own tradition, is something holy. It's not about nutrients and calories.<br />
+                    It's about sharing. It's about honesty. It's about identity.
+                </p>
+                <hr class="space s" />
+                <a href="{% url 'order' %}" class="btn btn-border btn-sm anima anima-fade-bottom">VIEW THE MENU</a>
+                <hr class="space" />
+                <hr class="space" />
+            </div>
+        </div>
+        <div class="section-empty">
+            <div class="container content">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 text-center-sm">
+                        <div class="title-base text-left text-center-sm">
+                            <hr />
+                            <h2>Our story</h2>
+                            <p>Sweet and tiny like a chocolate</p>
+                        </div>
+                        <p>
+                            Tincidunt integer eu augue augue nunc elit dolor luctus placerat scelerisque euismod iaculis eu lacus nunc mi elit vehicula ut laoreet
+                            acaliquam sit amet justo nunc tempor metus vel. Lorem ipsum dolor sit amet consectetur adipiscing
+                            elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
+                            Utenim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        </p>
+                        <hr class="space s" />
+                        <img src="/static/assets2/images/sign-2.png" alt="" />
+                    </div>
+                    <div class="col-md-6 col-sm-12 text-center-sm" data-anima="fade-right">
+                        <hr class="space m visible-sm" />
+                        <a class="img-box lightbox shadow-1" href="/static/assets2/images/gallery/large-1.jpg" data-lightbox-anima="show-scale">
+                            <img src="/static/assets2/images/gallery/large-1.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+                <hr class="space m" />
+                <hr />
+                <hr class="space m" />
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="img-box adv-img adv-img-full-content">
+                            <div class="img-box">
+                                <img src="/static/assets2/images/streetfood/chicken.jpg" alt="" />
+                            </div>
+                            <a href="{% url 'order' %}" class="caption-bg img-box">
+                                <div class="caption">
+                                    <div class="inner">
+                                        <h2>CHICKEN</h2>
+                                        <p class="sub">Grilled chicken in Indian cooking is typically marinated in a mixture of yogurt and spices</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="img-box adv-img adv-img-full-content">
+                            <div class="img-box">
+                                <img src="/static/assets2/images/streetfood/paneer.webp" alt="" />
+                            </div>
+                            <a href="{% url 'order' %}" class="caption-bg img-box">
+                                <div class="caption">
+                                    <div class="inner">
+                                        <h2>Paneer</h2>
+                                        <p class="sub">Paneer is a type of fresh cheese commonly used in Indian cuisine.</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="img-box adv-img adv-img-full-content">
+                            <div class="img-box">
+                                <img src="/static/assets2/images/streetfood/strimp.webp" alt="" />
+                            </div>
+                            <a href="{% url 'order' %}" class="caption-bg img-box">
+                                <div class="caption">
+                                    <div class="inner">
+                                        <h2>Strimp</h2>
+                                        <p class="sub">Cooked shrimp in Indian cooking is typically seasoned with a variety of aromatic spices and served with a flavorful sauce or curry.</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="img-box adv-img adv-img-full-content">
+                            <div class="img-box">
+                                <img src="/static/assets2/images/streetfood/lamb.webp" alt="" />
+                            </div>
+                            <a href="{% url 'order' %}" class="caption-bg img-box">
+                                <div class="caption">
+                                    <div class="inner">
+                                        <h2>Lamb</h2>
+                                        <p class="sub">Lamb is often cooked with a variety of aromatic spices and herbs, and is often braised, stewed, or roasted until tender.</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content bk-table" style="background-image:url('/static/assets2/images/bg-3.jpg')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="title-base tt-b">
+                            <hr />
+                            <h2>Book a table</h2>
+                            <p>A table only for you</p>
+                            <a href="{% url 'book_a_table' %}" class="btn btn-primary">Find a Table</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-empty">
+            <div class="container content">
+                <div class="title-base">
+                    <hr />
+                    <h2>Our menu</h2>
+                    <p>Genuine and delicious</p>
+                </div>
+                <hr class="space s" />
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="list-items">
+                            {% if menu_list %}
+                            {% for item in menu_list %}
+                            <div class="list-item">
+                                <div class="row">
+                                    <a class="col-md-9" href="{% url 'order' %}">
+                                        <h3>{{item.item_name}}</h3>
+                                        <p>{{item.item_desc}}</p>
+                                    </a>
+                                    <div class="col-md-3">
+                                        <span>{{item.price}}$</span>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-6">
+                        <div class="list-items">
+                            <div class="list-item">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <h3>Toast Classic</h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span>20$</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-item">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <h3>Beef Steak</h3>
+                                        <p>Lorem ipsum dolor sit</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span>49$</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-item">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <h3>Argentina's meals</h3>
+                                        <p>Sunt in culpa qui officia deserunt</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span>10$</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-item">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <h3>Rastbeef</h3>
+                                        <p>Excepteur sint occaecat cupidatat non proident</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span>15$</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-item">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <h3>Tomatoes And Chips</h3>
+                                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span>9.00$</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <hr class="space l" />
+                <div class="text-center">
+                    <a href="{% url 'order' %}" class="btn btn-sm">FULL MENU</a>
+                </div>
+            </div>
+        </div>
+        <div class="section-bg-image parallax-window white" data-natural-height="850" data-natural-width="1920" data-parallax="scroll" style="background-image:url('/static/assets2/images/bg-3.jpg')">
+            <div class="container content">
+                <div class="row">
+                    <div class="col-md-8 col-center">
+                        <div class="flexslider slider outer-navs" data-options="controlNav:true,directionNav:true">
+                            <ul class="slides">
+                                <li>
+                                    <div class="advs-box advs-box-top-icon niche-box-testimonails">
+                                        <i class="fa text-xl circle onlycover" style="background-image:url('/static/assets2/images/users/user-1.jpg')"></i>
+                                        <p>
+                                            Lorem ipsum dolor sitamet, consectetur adipisicing elito, sed do eiusmod tempor incididunt
+                                            ut labore et dolore magna aliqua. Ut enim ad minim veniamqrem aperiam.
+                                        </p>
+                                        <h5>Simone Parotti</h5>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="advs-box advs-box-top-icon niche-box-testimonails">
+                                        <i class="fa text-xl circle onlycover" style="background-image:url('/static/assets2/images/users/user-2.jpg')"></i>
+                                        <p>
+                                            Lorem ipsum dolor sitamet, consectetur adipisicing elito, sed do eiusmod tempor incididunt
+                                            ut labore et dolore magna aliqua. Ut enim ad minim veniamqrem aperiam.
+                                        </p>
+                                        <h5>Francesca Pariset</h5>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="advs-box advs-box-top-icon niche-box-testimonails">
+                                        <i class="fa text-xl circle onlycover" style="background-image:url('/static/assets2/images/users/user-3.jpg')"></i>
+                                        <p>
+                                            Lorem ipsum dolor sitamet, consectetur adipisicing elito, sed do eiusmod tempor incididunt
+                                            ut labore et dolore magna aliqua. Ut enim ad minim veniamqrem aperiam.
+                                        </p>
+                                        <h5>Andrea Michelon</h5>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-empty">
+            <div class="container content">
+                <div class="title-base">
+                    <hr />
+                    <h2>TODAY'S BEST OFFERS</h2>
+                    <p>A new taste every day</p>
+                </div>
+                <hr class="space m" />
+                 
+                <div class="row" data-anima="fade-bottom" data-timeline="asc" data-timeline-time="200" data-ti>
+                    {% if offers %}
+                    {% for item in offers %}
+                    <div class="col-md-4 anima">
+                        <div class="advs-box advs-box-top-icon-img">
+                            <a class="img-box" href="{% url 'offers' %}">
+                                <span><img src="{{MEDIA_URL}}{{item.image}}" alt=""></span>
+                            </a>
+                            <div class="advs-box-content">
+                                <h3><a href="#">{{item.discount}}</a></h3>
+                                <span class="extra-content">{{item.title}}</span>
+                                <p>
+                                    {{item.description}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="section-bg-color no-padding-bottom">
+            <div class="container content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="/static/assets2/images/chefs-2.png" alt="" />
+                    </div>
+                    <div class="col-md-6">
+                        <div class="content">
+                            <div class="title-base text-left">
+                                <hr />
+                                <h2>Our chefs</h2>
+                                <p>Starred Michelin chiefs</p>
+                            </div>
+                            <p>
+                                Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mit amet consectetur adipiscing elitsed do eiusmod tempor elit vehicula.
+                                Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore magna aliqua.
+                                Utenim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            </p>
+                            <hr class="space s" />
+                            <a href="#" class="btn btn-sm btn-border">Our story</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--
+        <div class="section-empty">
+            <div class="container content">
+                <div class="row">
+                    <div class="col-md-1 text-center-sm">
+                        <hr class="space xs hidden-sm" />
+                        <img src="/static/assets2/images/clock.gif" alt="" />
+                    </div>
+                    <div class="col-md-2 col-sm-12 text-center-sm">
+                        <hr class="space xs hidden-sm" />
+                        <div class="title-base text-left text-center-sm">
+                            <hr />
+                            <h2>Hours</h2>
+                            <p>Our open schedules</p>
+                        </div>
+                    </div>
+                    <div class="col-md-9 col-sm-12 text-center-sm">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Day</th>
+                                    <th>Monday</th>
+                                    <th>Tuesday</th>
+                                    <th>Wednesday</th>
+                                    <th>Thurdsay</th>
+                                    <th>Friday</th>
+                                    <th>Saturday</th>
+                                    <th>Sunday</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Lunch</th>
+                                    <td>11am - 15pm</td>
+                                    <td>11am - 15pm</td>
+                                    <td>11am - 15pm</td>
+                                    <td>11am - 15pm</td>
+                                    <td>11am - 15pm</td>
+                                    <td>11am - 15pm</td>
+                                    <td>11am - 15pm</td>
+                                </tr>
+                                <tr>
+                                    <th>Dinner</th>
+                                    <td>Closed</td>
+                                    <td>18pm - 23pm</td>
+                                    <td>18pm - 23pm</td>
+                                    <td>18pm - 23pm</td>
+                                    <td>18pm - 23pm</td>
+                                    <td>18pm - 23pm</td>
+                                    <td>18pm - 23pm</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <i class="scroll-top scroll-top-mobile show fa fa-sort-asc"></i>
+    {% include 'include/footer.html' %}
+    
+</body>
+
+
+</html>

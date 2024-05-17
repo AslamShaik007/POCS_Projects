@@ -1,0 +1,219 @@
+{% extends 'controlPanel/includes/base.html' %}
+{% load static %} <!-- THIS IS TO LOAD THE STATIC FOLDER -->
+
+<!-- THIS IS FOR PAGE TITLE -->
+{% block title %}
+  {{page_title}}
+{% endblock title %}
+
+<!-- THIS IS FOR ADDITIONAL CSS -->
+{% block udstyles %}
+    <style>
+      .custom-active3{
+        text-decoration: none;
+        color: #fff;
+        background: #8d72e1;
+        border-radius: 5px;
+      }
+    </style>
+
+
+{% endblock udstyles %}
+
+<!-- THIS IS FOR CONTENTS OF THE PAGE -->
+{% block pagecontents %}
+
+    <section id="content-wrapper" class="mb-5">
+        <div class="row mt-3 p-2">
+            <div class="col-md-6">
+                <div class="breadcrumb-wrapper">
+                    <span>
+                        <a title="" href="{% url 'dashboard' %}">
+                            <i class="fa fa-angle-left fa-dlt" aria-hidden="true"></i> &nbsp;&nbsp;Dashboard </a>
+                    </span>
+                    <span class="ttm-bread-sep"> / </span>
+                    <span>
+                        <a title="" href="{% url 'list_table' %}">Tables</a>
+                    </span>
+                    <span class="ttm-bread-sep"> / </span>
+                    <span> Add Table </span>
+                </div>
+            </div>
+            <div class="col-md-6"></div>
+        </div>
+        <div class="row  g-6 mb-6 mt-3">
+            <div class="col-md-10 col-sm-12">
+              <div class="card p-4" style="margin-left: 30px !important; box-shadow: 10px 10px 10px #9f9f9f !important;">
+                    <h2 class="text-muted h-2">Add Table</h2>
+                    <div class="row  mt-4">
+                        <div class="col-lg-12 mt">
+                            <form id="udformsubmit" class="udformsubmit">
+                                {% csrf_token %}
+                                <div class="row g-3">
+                                    <div class="col-md-4 form_field">
+                                        <div class="editShiftFormField">
+                                          <label for="editShiftName" class="form-label">Table Name <span id="star_error_ud">*</span></label>
+                                          <input type="text" value="" class="form-control" id="table_name" name="table_name" placeholder="Table Name" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 form_field">
+                                        <div class="editShiftFormField">
+                                          <label for="editShiftStartTime" class="form-label">No Of Seats<span id="star_error_ud">*</span></label>
+                                          <!-- <input type="text" value="" class="form-control" id="no_of_seats" name="no_of_seats" placeholder="No Of Seats" /> -->
+                                          <select class="form-select" id="numbersDropdown" name="no_of_seats" required>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                          </select>
+                                          <!-- {% comment %} <input type="time" value="{% if when_error.sstart %}{{when_error.sstart}}{% elif allShifts.sstart %}{{allShifts.sstart}}{% endif %}" class="form-control" id="editShiftStartTime" name="sstart" placeholder="Category Description" /> {% endcomment %} -->
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                      <label for="status-time" class="form-label">Status <span id="star_error_ud">*</span>
+                                      </label>
+                                      <select class="form-select" aria-label="Default select example" name="status" id="status" required>
+                                          <option disabled="disabled" selected="selected" value="">Select Status</option>
+                                          <option value="Available">Available</option>
+                                          <option value="Booked">Booked</option>
+                                          <option value="Cancelled">Cancelled</option>
+                                      </select>
+                                  </div>
+
+                                  <div class="col-md-4">
+                                    <label for="status-time" class="form-label">From Time<span id="star_error_ud">*</span>
+                                    </label>
+                                    <input class="form-control" type="time" id="timepicker" name = from_time placeholder="--:--" required>
+                                    <!-- <select class="form-select" aria-label="Default select example" name="show_on_our_menu" id="show_on_our_menu" required>
+                                        <option disabled="disabled" selected="selected" value="">From Time</option>
+                                        <option value="True">Yes</option>
+                                        <option value="False">No</option>
+                                    </select> -->
+                                </div>
+
+                                    <div class="col-md-4 form_field">
+                                        <div class="editShiftFormField">
+                                          <label for="editBreakStartTime" class="form-label">To Time<span id="star_error_ud">*</span></label>
+                                          <input class="form-control" type="time" id="timepicker" name = to_time placeholder="--:--" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal-footer">
+                                        <div class="d-grid gap-2 d-md-block d-md-flex justify-content-end">
+                                            <button type="button" class="btn btn-light btn-cancel btn-sm" onclick="window.location.href='{% url 'list_table' %}'">Back </button>
+                                            <button type="submit" id="udBtn" class="btn btn-primary btn-violet">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+        
+{% endblock pagecontents %}
+
+{% block udfooterscripts %}
+
+    <script type="text/javascript">
+
+      $("#udformsubmit").on("submit",function (e) {
+        e.preventDefault();
+        $('#udBtn').text('Please Wait...');
+        // $('#udBtn').setAttribute("disabled","disabled");
+        document.getElementById('udBtn').setAttribute("disabled","disabled");
+
+        $.ajax({
+          url : "{% url 'create_table' %}",
+          type : "POST",
+          data : new FormData(this),
+          processData : false,
+          dataType : 'json',
+          contentType:false,
+          // {% comment %} beforeSend:function(){
+          //     $(document).find('span.error-text').text('');
+          // }, {% endcomment %}
+          success: function(result)
+          {
+            $('#udBtn').text('Save');
+            // $('#udBtn').removeAttribute('disabled');
+            document.getElementById('udBtn').removeAttribute("disabled");
+
+            if(result.response == 'success'){
+              swal({
+                  title: "Success",
+                  type: "success",
+                  text: result.msg,
+                  confirmButtonColor: "#007bff",
+                  confirmButtonText: "Ok",
+                  closeOnConfirm: true
+              })
+              .then(function(){
+                location.reload();
+              });
+
+            }else if(result.response == 'notSaved'){
+              swal({
+                title: result.title,
+                type: result.icon,
+                text: result.msg,
+                confirmButtonColor: "#007bff",
+                confirmButtonText: "Ok",
+                closeOnConfirm: true
+              })
+              .then(function(){
+                location.reload();
+              });
+
+            }else{
+              swal({
+                title: "Error",
+                type: "warning",
+                text: "Something went wrong! Please try again",
+                confirmButtonColor: "#007bff",
+                confirmButtonText: "Ok",
+                closeOnConfirm: true
+              })
+              .then(function(){
+                location.reload();
+              });
+            }
+        },
+        error: function(response)
+        {
+          $('#udBtn').text('Submit');
+          document.getElementById('udBtn').removeAttribute("disabled");
+          swal({
+            title: "Error",
+            type: "warning",
+            text: "Something went wrong! Please try again!",
+            confirmButtonColor: "#007bff",
+            confirmButtonText: "Ok",
+            closeOnConfirm: true
+          })
+          .then(function(){
+            location.reload();
+          });
+        }
+        });
+      });
+      
+        $(document).ready(function(){
+          $('#timepicker').timepicker({
+            format: 'HH:mm',
+            showMeridian: false
+          });
+        });
+  
+    </script>
+
+{% endblock udfooterscripts %}

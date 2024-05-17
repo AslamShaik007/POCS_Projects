@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Contact Us</title>
+</head>
+
+<body>
+    <p>
+        <strong>
+        From:
+        </strong>
+        {{name}}<br>
+        <strong>
+        Sent:
+        </strong>{{date_time}}<br>
+        <strong>
+        Subject: 
+        </strong>Requested Quote - Subscription <br><br>
+    </p>
+    <table cellpadding="5" cellpadding="0">
+    <tr><td width="100">Email</td><td>:</td><td>{{name}}</td></tr>
+    <tr><td colspan="3"><strong>Customer Message Details are as follows:</strong></td></tr>
+    <tr><td>Requested Quote on</td><td>:</td><td>{{submission_date}}</td></tr></table><br>
+    <tr><td>IP Address</td><td>:</td><td>{{ip_address}}</td></tr></table><br>
+    <p>
+        Sincerely, <br><br>
+        www.example.com, <br>
+        contact@example.com
+    </p>
+</body>
+
+</html>

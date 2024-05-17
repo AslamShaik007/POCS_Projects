@@ -1,0 +1,417 @@
+{% load static %} <!-- THIS IS TO LOAD THE STATIC FOLDER -->
+{% load ud_custom_tags %} <!--  This is my custom functions inside this tags -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- THIS IS FOR TITLE OF THE PROJECT -->
+        <title>
+            {% block title %} KEYLOGGER {% endblock title %}
+        </title>
+
+        {% block headermetatags %}
+            <!-- THIS IS FOR HEADER META TAG -->
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% endblock headermetatags %}    
+
+        {% block udmetatags %}
+        {% endblock udmetatags %}
+
+        {% block headercss %}
+            <!-- THIS IS FOR HEADER CSS -->
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+            <link rel="stylesheet" type="text/css" href="{% static 'cpanel/css/style.css' %}">
+            <link rel="stylesheet" type="text/css" href="{% static 'cpanel/css/app-chat.css' %}">
+            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" type="text/css" href="{% static 'cpanel/css/sweetalert/sweetalert2.min.css' %}">
+            <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css" integrity="sha512-f8gN/IhfI+0E9Fc/LKtjVq4ywfhYAVeMGKsECzDUHcFJ5teVwvKTqizm+5a84FINhfrgdvjX8hEJbem2io1iTA==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+            <link rel="stylesheet" href="{% static 'cpanel/css/lc_lightbox.css' %}" />
+            <link rel="stylesheet" href="{% static 'cpanel/css/skins/minimal.css' %}" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css">
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
+            
+            <style>
+                #star_error_ud{
+                    color:red;
+                }
+
+                .star_error_ud{
+                    color:red;
+                }
+                
+                .image_size_ud{
+                    width: 45%;
+                }
+                
+                .image_size_content_ud{
+                    width: 18%;
+                }
+            </style>
+        {% endblock headercss %}
+
+        {% block udheadercss %}
+        {% endblock udheadercss %}
+
+        {% block mainheaderscripts %}
+            <!-- THIS IS FOR HEADER SCRIPT -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+            {% comment %} <script type="text/javascript" src=" https://code.jquery.com/jquery-3.5.1.js"></script> {% endcomment %}
+            <script type="text/javascript" src="{% static 'cpanel/js/jquery-3.6.3.min.js' %}"></script>
+            <script type="text/javascript" src=" https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+            <script src='https://cdn.plot.ly/plotly-2.18.0.min.js'></script>
+            <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+            <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+            <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+            <script type="text/javascript" src=" {% static 'cpanel/js/sweetalert/sweetalert2.js' %}"></script>
+            <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js" integrity="sha512-MqEDqB7me8klOYxXXQlB4LaNf9V9S0+sG1i8LtPOYmHqICuEZ9ZLbyV3qIfADg2UJcLyCm4fawNiFvnYbcBJ1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+            <script src="{% static 'cpanel/js/app-chat.js' %}" type="text/javascript"></script>
+            <script src="{% static 'cpanel/js/lc_lightbox.lite.js' %}" type="text/javascript"></script>
+            <!-- ASSETS -->
+            <script src="{% static 'cpanel/js/alloy_finger.min.js' %}" type="text/javascript"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        {% endblock mainheaderscripts %}
+
+        <!-- THIS IS FOR ADDITIONAL SCRIPTS -->
+        {% block udheaderscripts %}
+        {% endblock udheaderscripts %}
+
+        <!-- THIS IS FOR ADDITIONAL CSS -->
+        {% block udstyles %}
+        {% endblock udstyles %}
+
+    </head>
+    <body>
+        <div id="wrapper">
+
+            <!-- THIS IS FOR LEFT SIDE MENU START  -->
+                {% block leftsidemenu %}
+
+                   {% include './sidemenu.html' %}
+                
+                {% endblock leftsidemenu %}  
+
+            <!-- THIS IS FOR LEFT SIDE MENU END  -->
+
+            <!-- THIS IS FOR NAVBAR START  -->
+            
+                {% block navbar %}
+                    {% include './navbar.html' %}
+                {% endblock navbar%} 
+                
+            <!-- THIS IS FOR NAVBAR START  -->    
+
+                <!-- THIS IS CONTENT SECTION START -->
+                    {% block pagecontents %}   
+                    {% endblock pagecontents %}     
+                <!-- THIS IS CONTENT SECTION END -->
+
+
+    <!-- THIS IS FOOTER SECTION  START  -->
+
+                <div class="container-fluid mt-5 "> 
+                    <div class="row">   <div class="footer bg-light pt-4 pb-2">
+                        <p class="text-end ">
+                            {% block copyrights %}
+                                2023 © Vitel Global
+                            {% endblock copyrights %}    
+                        </p>
+                    </div>
+                </div>  
+            </div>
+        </div>
+
+        <!-- THIS IS FOR FOOTER CSS -->
+        {% block udfootercss %}
+        {% endblock udfootercss %}
+
+        <!-- THIS IS FOR FOOTER SCRIPTS -->
+        {% block footerscripts %}
+
+            <script type="text/javascript">
+                const $button = document.querySelector("#sidebar-toggle");
+                const $wrapper = document.querySelector("#wrapper");
+
+                $button.addEventListener("click", (e) => {
+                e.preventDefault();
+                $wrapper.classList.toggle("toggled");
+                });
+            </script>
+
+            <script>
+                $(document).ready(function () {
+                $('#example').DataTable({
+                scrollY: 200,
+                scrollX: true,
+                });
+                });
+            </script>
+
+            <script >
+                var trace1 = {
+                x: [1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012],
+                y: [219,146,112,127,124,180,236,207,236,263,350,430,474,526,488,537,500,439],
+                name: "Rest of world",
+                marker: { color: "rgb(55, 83, 109)" },
+                type: "bar"
+                };
+
+                var trace2 = {
+                x: [1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012],
+                y: [16,13,10,11,28,37,43,55,56,88,105,156,270,299,340,403,549,499],
+                name: "China",
+                marker: { color: "rgb(26, 118, 255)" },
+                type: "bar"
+                };
+
+                var data = [trace1, trace2];
+
+                var layout = {
+                title: "US Export of Plastic Scrap",
+                xaxis: {
+                tickfont: {
+                size: 14,
+                color: "rgb(107, 107, 107)"
+                }
+                },
+                yaxis: {
+                title: "USD (millions)",
+                titlefont: {
+                size: 16,
+                color: "rgb(107, 107, 107)"
+                },
+                tickfont: {
+                size: 14,
+                color: "rgb(107, 107, 107)"
+                }
+                },
+                legend: {
+                x: 0,
+                y: 1.0,
+                bgcolor: "rgba(255, 255, 255, 0)",
+                bordercolor: "rgba(255, 255, 255, 0)"
+                },
+                barmode: "group",
+                bargap: 0.15,
+                bargroupgap: 0.1
+                };
+
+                Plotly.newPlot("myDiv", data, layout);
+            </script>
+
+            <script >
+
+                // Create root and chart
+                var root = am5.Root.new("chartdiv");
+
+                root.setThemes([
+                am5themes_Animated.new(root)
+                ]);
+
+                var chart = root.container.children.push( 
+                am5percent.PieChart.new(root, {
+                layout: root.horizontalLayout
+                }) 
+                );
+
+                // Define data
+                var data = [{
+                country: "Adobe Xd",
+                sales: 100000
+                }, {
+                country: "Adobe Xd",
+                sales: 160000
+                }, {
+                country: "Adobe Xd",
+                sales: 80000
+                }, {
+                country: "Chrome",
+                sales: 90000
+                }, {
+                country: "Spark",
+                sales: 25000
+                }, {
+                country: "Adobe Photpshop",
+                sales: 70000
+                }, {
+                country: "Adobe Illustrator",
+                sales: 75000
+                }, {
+                country: "Adobe Illustrator",
+                sales: 40000
+                },  ];
+
+                // Create series
+                var series = chart.series.push(
+                am5percent.PieSeries.new(root, {
+                name: "Series",
+                valueField: "sales",
+                categoryField: "country",
+                legendLabelText: "[{fill}]{category}[/]",
+                legendValueText: "[bold {fill}]{value}[/]"
+                })
+                );
+                series.data.setAll(data);
+                series.labels.template.set("forceHidden", true);
+                series.ticks.template.set("forceHidden", true);
+
+                // Add legend
+                var legend = chart.children.push( 
+                am5.Legend.new(root, {
+                centerY: am5.percent(50),
+                y: am5.percent(50),
+                layout: root.verticalLayout
+                })
+                );
+
+                legend.data.setAll(series.dataItems);
+            </script>
+
+            <script >
+                // Create root and chart
+                var root = am5.Root.new("chartdiv2");
+
+                root.setThemes([
+                am5themes_Animated.new(root)
+                ]);
+
+                var chart = root.container.children.push( 
+                am5percent.PieChart.new(root, {
+                layout: root.horizontalLayout
+                }) 
+                );
+
+                // Define data
+                var data = [{
+                country: "Adobe Xd",
+                sales: 100000
+                }, {
+                country: "Adobe Xd",
+                sales: 160000
+                }, {
+                country: "Adobe Xd",
+                sales: 80000
+                }, {
+                country: "Chrome",
+                sales: 90000
+                }, {
+                country: "Spark",
+                sales: 25000
+                }, {
+                country: "Adobe Photpshop",
+                sales: 70000
+                }, {
+                country: "Adobe Illustrator",
+                sales: 75000
+                }, {
+                country: "Adobe Illustrator",
+                sales: 40000
+                },  ];
+
+                // Create series
+                var series = chart.series.push(
+                am5percent.PieSeries.new(root, {
+                name: "Series",
+                valueField: "sales",
+                categoryField: "country",
+                legendLabelText: "[{fill}]{category}[/]",
+                legendValueText: "[bold {fill}]{value}[/]"
+                })
+                );
+                series.data.setAll(data);
+                series.labels.template.set("forceHidden", true);
+                series.ticks.template.set("forceHidden", true);
+
+                // Add legend
+                var legend = chart.children.push( 
+                am5.Legend.new(root, {
+                centerY: am5.percent(50),
+                y: am5.percent(50),
+                layout: root.verticalLayout
+                })
+                );
+
+                legend.data.setAll(series.dataItems);
+            </script>
+
+            <script type="text/javascript">
+                function removeThisMessage(removethisone,classname){
+                    removethisone.closest("."+classname).remove();
+                }
+            </script>
+
+            {% comment %} To download the listing data in excel {% endcomment %}
+
+            <script>
+
+              $('.datepicker_ud').datepicker({
+                format: 'dd/mm/yyyy',
+                autoclose: true,
+                endDate: '+0d',
+                todayBtn: 'linked'
+              });
+
+              $('.calenderPickerUd').datepicker({
+                format: "yyyy-mm-dd",
+                todayHighlight: true
+              });
+            </script>
+
+            <script>
+                $(document).ready(function () {
+                  $('#dtReportstable').DataTable({
+                    scrollY: 200,
+                    scrollX: true,
+                  });
+          
+                  $("#btndownload").click(function(){
+                    alert("downloaded successfully");
+                    var downloadLink;
+                      var dataType = 'application/vnd.ms-excel';
+                      var tableSelect = document.getElementById('dtReportstable');
+          <!--            alert(tableSelect)-->
+                      var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+          <!--            alert(tableHTML)-->
+                      // Specify file name
+                      filename = "report_data.xls";
+                      alert(filename)
+                      // Create download link element
+                      downloadLink = document.createElement("a");
+          
+                      document.body.appendChild(downloadLink);
+          
+                      if(navigator.msSaveOrOpenBlob){
+                          var blob = new Blob(['\ufeff', tableHTML], {
+                              type: dataType
+                          });
+                          navigator.msSaveOrOpenBlob( blob, filename);
+                      }else{
+                          // Create a link to the file
+                          downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+          
+                          // Setting the file name
+                          downloadLink.download = filename;
+          
+                          //triggering the function
+                          downloadLink.click();
+                      }
+          
+                  });
+              });
+              </script>
+
+        {% endblock footerscripts %}
+
+    <!-- THIS IS FOOTER SECTION END  -->  
+    
+        <!-- THIS IS FOR YOUR SCRIPTS -->
+        {% block udfooterscripts %}
+        {% endblock udfooterscripts %}
+
+    </body>
+</html>

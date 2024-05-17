@@ -1,0 +1,29 @@
+{% load static %} <!-- THIS IS TO LOAD THE STATIC FOLDER -->
+
+{% comment %} TO SHOW THE ERROR, SUCCESS, WARNING AND INFO MESSAGES BY UDAY START {% endcomment %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true" onclick="removeThisMessage(this, 'alert');">&times;</span>
+                </button>
+            {{ message | safe }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% comment %} TO SHOW THE ERROR, SUCCESS, WARNING AND INFO MESSAGES BY UDAY END {% endcomment %}
+
+
+
+{% comment %} 2nd Method to show the messages {% endcomment %}
+
+{% comment %} TO SHOW THE ERROR, SUCCESS, WARNING AND INFO MESSAGES BY UDAY START {% endcomment %}
+    {% comment %} {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="alert {{ message.tags }} alert-dismissible" {% endif %}>{{ message | safe }}</li>
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message | safe }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %} {% endcomment %}
+{% comment %} TO SHOW THE ERROR, SUCCESS, WARNING AND INFO MESSAGES BY UDAY END {% endcomment %}

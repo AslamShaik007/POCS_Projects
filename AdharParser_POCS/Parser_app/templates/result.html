@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Adhar Parser</title>
+        <!-- Bootstrap CSS Lib -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <!-- Font Awesome Icons Lib -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="../static/invoice_assets/CSS/site.css">
+    </head>
+    <body id="UploadVideoBodyBg" class="UploadVideoBodyBg">
+            <div class="row">
+                <div class="col-12">
+                    <div class="FormGroup py-4">
+                        <h2 class="font_24 font_weight_500 DarkBlue4_Color text-center">Aadhar Details</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-10 col-sm-12 col-12 mx-auto">
+                    <div class="accordion" id="OverViewSignleViewAccordion">
+                        {% for key, value in data.items %}
+                        <div class="accordion-item">
+                            <div id="CollapseOverViewAccordion" class="accordion-collapse collapse show" aria-labelledby="CandidatenalysisAccordion" data-bs-parent="#OverViewSignleViewAccordion">
+                                <div class="accordion-body">
+                                    <div class="AccordionBody ms-xxl-4 ms-xl-4 ms-lg-4 ms-md-0 ms-sm-0 ms-0 ps-3">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label class="font_16 font_weight_300  AccordionKey">{{ key }}</label>
+                                            </div>
+                                            <div class="col-1">
+                                                <strong> : </strong>
+                                            </div>
+                                            <div class="col-sm-8 col-12">
+                                                <label class="font_16 font_weight_600 AccordionValue">{{ value }}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                </div>
+            </div>
+  
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    
+           
+      </body>
+    </html>

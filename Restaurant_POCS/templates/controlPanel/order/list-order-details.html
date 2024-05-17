@@ -1,0 +1,100 @@
+{% extends 'controlPanel/includes/base.html' %}
+{% load static %} <!-- THIS IS TO LOAD THE STATIC FOLDER -->
+{% load ud_custom_tags %} <!--  This is my custom functions inside this tags -->
+<!-- {#  {% load globalfun %}  #} -->
+
+<!-- THIS IS FOR PAGE TITLE -->
+{% block title %}
+  {{page_title}}
+{% endblock title %}
+
+<!-- THIS IS FOR CONTENTS OF THE PAGE -->
+{% block pagecontents %}
+
+<section id="content-wrapper">
+
+  <div class="row mt-3 p-2">
+
+    <div class="col-md-9">
+      <div class="breadcrumb-wrapper">
+        <span>
+          <a title="" href="{% url 'dashboard' %}"><i class="fa fa-angle-left fa-dlt" aria-hidden="true"></i> &nbsp;&nbsp;Dashboard&nbsp;</a>
+        </span>
+        <span class="ttm-bread-sep">/ </span>
+        <a title="" href="{% url 'list_order' %}"> Customer Details</a>
+        <span class="ttm-bread-sep">/ </span>
+        <span> Order Details </span>
+    </div>
+
+  </div>
+
+  <div class="row mt-1 mb-5">
+    <section id="content-wrapper">
+      <div class="row  g-6 mb-6 mt-3">
+        <div class="col-sm-12">
+          <div class="card p-4">
+            <div class="row">
+              <div class="col-md-6">
+                <h1 class="d-heading font-semibold text-muted text-sm d-block mb-2">Item Details</h1>
+              </div>
+
+            </div>
+
+            <div class="row mt-3">
+                <table id="dtReportstable" class="display nowrap" style="width:100%">
+                  <thead>
+                    <tr>
+                        <th>S.NO.</th>
+                        <th>Item Name</th>
+                        <th>Quantity</th>
+                        <th>SubItem Name</th>
+                        <th>Total Price</th>
+                        <th>Name</th>
+                        <th>Street number</th>
+                        <th>City</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
+                        <th>Created At</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    {% if listings %}
+
+                        {% for value in listings %}
+
+                        <tr>
+                          <td>{{ forloop.counter }}</td>
+                          {% comment %} <td>{{value.item_name}} {% my_function None null as udayshankar%} {{udayshankar.firstValue}}</td> {% endcomment %}
+                          <td>{{value.item_name}}</td>
+                          <td>{{value.quantity}}</td>
+                          <td>{{value.sub_items}}</td>
+                          <td>{{value.total_price}}</td>
+                          <td>{{value.name}}</td>
+                          <td>{{value.street_number}}</td>
+                          <td>{{value.city}}</td>
+                          <!-- <td>{{value.phone_number}}</td> -->
+                          <td><div style="display: inline-block;cursor: pointer;" > {{value.phone_number}}</div></td>
+                          <td>{{value.email}}</td>
+                          <td>{{value.created_at}}</td>
+                        </tr>
+
+                        {% endfor %}
+                    {% endif %}
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+</section>
+
+{% endblock pagecontents %}
+
+{% block udfooterscripts %}
+
+{% endblock udfooterscripts %}

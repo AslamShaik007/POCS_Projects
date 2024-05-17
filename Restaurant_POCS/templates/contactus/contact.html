@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+
+<!-- Meta -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Title -->
+<title>Soup - Restaurant with Online Ordering System Template</title>
+
+
+{% include 'include/topstyle.html' %}
+</head>
+
+<body>
+
+<!-- Body Wrapper -->
+<div id="preloader"></div>
+<div class="footer-parallax-container">
+    {% include 'include/header.html' %}
+
+    <div class="section-empty section-item">
+        <!-- <div class="col-lg-12">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30450.568605284665!2d78.44717631699007!3d17.44433999094111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb90ba0f380351%3A0x9102680d3087a3ce!2sBegampet!5e0!3m2!1sen!2sin!4v1710251244300!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div> -->
+        <div class="header-title ken-burn-center white" data-parallax="scroll" data-position="top" data-natural-height="850" data-natural-width="1920" style="background:url(/static/assets2/images/bg-27.jpg)" >
+            <div class="container">
+                <div class="title-base">
+                    <hr class="anima" />
+                    <h1>Contact Us</h1>
+                    <p>Please fill the form to Contact US</p>
+                </div>
+            </div>
+        </div>
+        <div class="container content">
+            <div class="row">
+                <div class="col-md-6 cont-col">
+                    <h3>Send a message</h3>
+                    <p>
+                        Potenti inceptos, facilisi, pariatur netus, scelerisque. Porta eum sapiente temporibus, placerat voluptates!
+                        Debitis necessitatibus fugit nesciunto malesuada consequat nostra accusamus commodi.
+                    </p>
+                    <hr class="space s" />
+                    <form  method="POST" action="{% url 'contact' %}" onsubmit="return contact()">
+                        {% csrf_token %}
+                        <div class="col-lg-10 m-auto" data-aos="fade-up" data-aos-delay="100">
+                            <div class="row">
+                                <div class="cont-form mb-3 col-lg-6">
+                                    <label for="name" class="ps-3 fw-bold mb-2">Name<span class="error">*</span></label>
+                                    <input type="text" class="form-control" id="name" placeholder="Enter Name*" name="name" onKeyPress="return ValidateAlpha(event);">
+                                    <div id="error1" style="display: none"></div>
+                                </div>
+                                <div class="cont-form mb-3 col-lg-6">
+                                    <label for="phone" class="ps-3 fw-bold mb-2">Phone Number<span class="error">*</span></label>
+                                    <input type="text" class="form-control" id="phone" placeholder="Enter Phone*" name="phone" onKeyPress="return isNumberKey(event);">
+                                    <div id="error3" style="display: none"></div>
+                                </div>
+                                <div class="cont-form mb-3 col-lg-12">
+                                    <label for="email" class="ps-3 fw-bold mb-2">Email Address<span class="error">*</span></label>
+                                    <input type="text" class="form-control" id="email" placeholder="Enter Email*" name="email">
+                                    <div id="error2" style="display: none"></div>
+                                    
+                                </div>
+                                <div class="cont-form mb-3 col-lg-12">
+                                    <label for="phone" class="ps-3 fw-bold mb-2">Reason for Contact</label>
+                                    <select class="form-control" name="reason_contact" id="reason_contact">
+                                        <option value="">Please Select</option>
+                                        <option value="Reservation">Reservation</option>
+                                        <option value="Feedback">Feedback</option>
+                                        <option value="Special Request">Special Request</option>
+                                    </select>
+                                    <div id="error4" style="display: none"></div>
+                                </div>
+                                <div class="cont-form mb-3 col-lg-12">
+                                    <label for="message" class="ps-3 fw-bold mb-2">Message<span class="error">*</span></label>
+                                    <textarea id="message" class="form-control" cols="30" rows="6" placeholder="Enter Message*" name="message"></textarea>
+                                    <div id="error5" style="display: none"></div>
+                                </div>
+                                <div class="cont-form mb-3 col-lg-12">
+                                    <label for="newsletter" class="ps-3 fw-bold mb-2"></label>
+                                    <input type="checkbox" id="subscribe" name="subscribe" value="Yes" /> Would you like to subscribe to our newsletter for updates and special offers?
+                                    <div id="error6" style="display: none"></div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="submit" class="btn btn-primary text-white py-3" id="btnSubmit" value="Send Message">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6 cont-col">
+                    <hr class="space visible-sm" />
+                    <h3>How to reach us</h3>
+                    <p>
+                        Potenti inceptos, facilisi, pariatur netus, scelerisque. Porta eum, sapiente temporibus, placerat voluptates!
+                        Debitis necessitatibus fugit nesciunt, malesuada consequat.
+                    </p>
+                    <hr class="space s" />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="fa-ul">
+                                <li><i class="fa-li im-skype"></i> Company.name</li>
+                                <li><i class="fa-li im-headset"></i> (123) 0 123 455669</li>
+                                <li><i class="fa-li im-mail-3"></i> info@Gourmet.com</li>
+                                <li><i class="fa-li im-skype"></i> company.name</li>
+                                <li><i class="fa-li im-skype"></i> company.name</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="fa-ul">
+                                <li>
+                                    <i class="fa-li im-home-5"></i>
+                                    Sturlly Technologies
+                                    PO Box 16122, Collins Street West,
+                                    Victoria 8007, United States.
+                                </li>
+                                <li>
+                                    <i class="fa-li im-home-5"></i>
+                                    Martin Str. Collins Street West,
+                                    Mel 8007, United States.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <hr class="space s" />
+                    <div class="text-center">
+                        <div class="btn-group btn-group-icons" role="group">
+                            <a target="_blank" href="https://www.facebook.com/varundigitalmedia1/" data-social="share-facebook"><i class="fa fa-facebook"></i></a>
+                            <a target="_blank" href="https://twitter.com/Varun_Digitals" data-social="share-twitter"><i class="fa fa-twitter"></i></a>
+                            <a target="_blank" href="https://www.instagram.com/varundigitalmedia1/" data-social="share-google"><i class="fa fa-instagram"></i></a>
+                            <a target="_blank" href="https://www.linkedin.com/company/varun-digital-media/" data-social="share-linkedin"><i class="fa fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'include/footer.html' %}
+
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script>
+
+        // Contact us
+            function contact() {
+        
+            var fname = document.getElementById("name").value;
+            if (fname == "") {
+                var input = (document.getElementById("name").style.borderColor =
+                "orange");
+                document.getElementById("error1").style.display = "block";
+                document.getElementById("error2").style.display = "none";
+                document.getElementById("error3").style.display = "none";
+                document.getElementById("error4").style.display = "none";
+                document.getElementById("error5").style.display = "none";
+                document.getElementById("error6").style.display = "none";
+                document.getElementById("error1").innerHTML =
+                "*Please enter a Your Name*";
+                document.getElementById("error1").style.color = "red";
+                return false;
+            } else if (/[^a-zA-Z\-.\s/]/.test(fname)) {
+                var input = (document.getElementById("name").style.borderColor =
+                "orange");
+                document.getElementById("error1").style.display = "block";
+                document.getElementById("error2").style.display = "none";
+                document.getElementById("error3").style.display = "none";
+                document.getElementById("error4").style.display = "none";
+                document.getElementById("error5").style.display = "none";
+                document.getElementById("error6").style.display = "none";
+                document.getElementById("error1").innerHTML =
+                "*Special Characters & Numbers Not allowed*";
+                document.getElementById("error1").style.color = "red";
+                return false;
+            }
+        
+            var email = document.getElementById("email").value;
+            var validRegex =/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/;
+            if (email == "") {
+                var input = (document.getElementById("email").style.borderColor =
+                "orange");
+                document.getElementById("error1").style.display = "none";
+                document.getElementById("error2").style.display = "block";
+                document.getElementById("error3").style.display = "none";
+                document.getElementById("error4").style.display = "none";
+                document.getElementById("error5").style.display = "none";
+                document.getElementById("error6").style.display = "none";
+                document.getElementById("error2").innerHTML =
+                "*Please enter a Email_ID*";
+                document.getElementById("error2").style.color = "red";
+                return false;
+            } else if (!email.match(validRegex)) {
+                var input = (document.getElementById("email").style.borderColor =
+                "orange");
+                document.getElementById("error1").style.display = "none";
+                document.getElementById("error2").style.display = "block";
+                document.getElementById("error3").style.display = "none";
+                document.getElementById("error4").style.display = "none";
+                document.getElementById("error5").style.display = "none";
+                document.getElementById("error6").style.display = "none";
+                document.getElementById("error2").innerHTML =
+                "*Please enter valid Email_ID*";
+                document.getElementById("error2").style.color = "red";
+                return false;
+            }
+        
+            var phone = document.getElementById("phone").value;
+            if (phone == "") {
+                var input = (document.getElementById("phone").style.borderColor =
+                "orange");
+                document.getElementById("error1").style.display = "none";
+                document.getElementById("error2").style.display = "none";
+                document.getElementById("error3").style.display = "block";
+                document.getElementById("error4").style.display = "none";
+                document.getElementById("error5").style.display = "none";
+                document.getElementById("error6").style.display = "none";
+                document.getElementById("error3").innerHTML =
+                "*Please enter a Mobile Number*";
+                document.getElementById("error3").style.color = "red";
+                return false;
+            } else if (phone.length < 10) {
+                var input = (document.getElementById("phone").style.borderColor =
+                "orange");
+                document.getElementById("error1").style.display = "none";
+                document.getElementById("error2").style.display = "none";
+                document.getElementById("error3").style.display = "block";
+                document.getElementById("error4").style.display = "none";
+                document.getElementById("error5").style.display = "none";
+                document.getElementById("error6").style.display = "none";
+                document.getElementById("error3").innerHTML =
+                "*Mobile Number must be Min 10*";
+                document.getElementById("error3").style.color = "red";
+                return false;
+            }
+        
+            var reason = document.getElementById("reason_contact").value;
+            if (reason == "") {
+                var input = (document.getElementById(
+                "reason_contact"
+                ).style.borderColor = "orange");
+                document.getElementById("error1").style.display = "none";
+                document.getElementById("error2").style.display = "none";
+                document.getElementById("error3").style.display = "none";
+                document.getElementById("error4").style.display = "block";
+                document.getElementById("error5").style.display = "none";
+                document.getElementById("error6").style.display = "none";
+                document.getElementById("error4").innerHTML =
+                "*Please enter Reason for contact*";
+                document.getElementById("error4").style.color = "red";
+                return false;
+            }
+        
+            var textarea = document.getElementById("message").value;
+            if (textarea == "") {
+                var input = (document.getElementById("message").style.borderColor =
+                "orange");
+                document.getElementById("error1").style.display = "none";
+                document.getElementById("error2").style.display = "none";
+                document.getElementById("error3").style.display = "none";
+                document.getElementById("error4").style.display = "none";
+                document.getElementById("error5").style.display = "block";
+                document.getElementById("error6").style.display = "none";
+                document.getElementById("error5").innerHTML =
+                "*Please enter a Message*";
+                document.getElementById("error5").style.color = "red";
+                return false;
+            } else if (/[^0-9a-zA-Z\-=!.()+@:$&%'",.\s/?]/.test(textarea)) {
+                var input = (document.getElementById("message").style.borderColor =
+                "orange");
+                document.getElementById("error1").style.display = "none";
+                document.getElementById("error2").style.display = "none";
+                document.getElementById("error3").style.display = "none";
+                document.getElementById("error4").style.display = "none";
+                document.getElementById("error5").style.display = "block";
+                document.getElementById("error6").style.display = "none";
+                document.getElementById("error5").innerHTML =
+                "*Special Characters & Numbers Not allowed*";
+                document.getElementById("error5").style.color = "red";
+                return false;
+            }
+            }
+            
+        </script>
+        
+
+
+</body> 
+</html>

@@ -1,0 +1,147 @@
+{% load static %} <!-- THIS IS TO LOAD THE STATIC FOLDER -->
+
+<div id="navbar-wrapper">
+    <nav class="navbar navbar-inverse pt-3">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand" id="sidebar-toggle"><i class="fa fa-bars fa-navi"></i></a>
+            </div>
+
+            <div class="d-flex">
+
+<!--                <div class="dropdown d-inline-block">-->
+<!--                    <button type="button" class="btn header-item noti-icon position-relative" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                        <img src="{% static 'images/message.svg' %}" align="" class="img-fluid">-->
+<!--                        <span class="badge bg-org rounded-pill">5</span>-->
+<!--                    </button>-->
+<!--                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-notifications-dropdown">-->
+<!--                        <div class="p-3">-->
+<!--                            <div class="row align-items-center">-->
+<!--                                <div class="col">-->
+<!--                                    <h6 class="m-0"> Notifications </h6>-->
+<!--                                </div>-->
+<!--                                <div class="col-auto">-->
+<!--                                    <a href="#!" class="small text-reset text-decoration-underline"> Unread (3)</a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                        <div data-simplebar="init" style="max-height: 230px;">-->
+<!--                            <div class="simplebar-wrapper" style="margin: 0px;">-->
+<!--                                <div class="simplebar-height-auto-observer-wrapper">-->
+<!--                                    <div class="simplebar-height-auto-observer"></div>-->
+<!--                                </div>-->
+
+<!--                                <div class="simplebar-mask">-->
+<!--                                    <div class="simplebar-offset" style="right: 0px; bottom: 0px;">-->
+<!--                                        <div class="simplebar-content-wrapper" style="height: auto; overflow: hidden;">-->
+<!--                                            <div class="simplebar-content" style="padding: 0px;"></div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <div class="simplebar-placeholder" style="width: 0px; height: 0px;"></div>-->
+<!--                            </div>-->
+
+<!--                            <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">-->
+<!--                                <div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;"></div>-->
+<!--                            </div>-->
+
+<!--                            <div class="simplebar-track simplebar-vertical" style="visibility: hidden;">-->
+<!--                                <div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;"></div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                            <div class="p-2 border-top d-grid">-->
+<!--                                <a class="btn btn-sm btn-link font-size-14 text-center" href="javascript:void(0)">-->
+<!--                                    <i class="mdi mdi-arrow-right-circle me-1"></i> <span>View More..</span> -->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="dropdown d-inline-block">-->
+<!--                    <button type="button" class="btn header-item noti-icon position-relative" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                    <img src="{% static 'images/mail.svg' %}" align="" class="img-fluid">-->
+
+<!--                        <span class="badge bg-org rounded-pill">5</span>-->
+<!--                    </button>-->
+<!--                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-notifications-dropdown">-->
+<!--                        <div class="p-3">-->
+<!--                            <div class="row align-items-center">-->
+<!--                                <div class="col">-->
+<!--                                    <h6 class="m-0"> Notifications </h6>-->
+<!--                                </div>-->
+<!--                                <div class="col-auto">-->
+<!--                                    <a href="#!" class="small text-reset text-decoration-underline"> Unread (3)</a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div data-simplebar="init" style="max-height: 230px;"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" style="height: auto; overflow: hidden;"><div class="simplebar-content" style="padding: 0px;">-->
+<!--                        -->
+<!--                        -->
+
+<!--                        -->
+<!--                        </div></div></div></div>-->
+<!--                        <div class="simplebar-placeholder" style="width: 0px; height: 0px;"></div>-->
+<!--                    </div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">-->
+<!--                        <div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: hidden;"><div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;"></div></div></div>-->
+<!--                        <div class="p-2 border-top d-grid">-->
+<!--                            <a class="btn btn-sm btn-link font-size-14 text-center" href="javascript:void(0)">-->
+<!--                                <i class="mdi mdi-arrow-right-circle me-1"></i> <span>View More..</span> -->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="dropdown d-inline-block">-->
+<!--                    <button type="button" class="btn header-item noti-icon position-relative" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                        <img src="{% static 'images/notification.svg' %}" align="" class="img-fluid">-->
+<!--                        <span class="badge bg-org rounded-pill">5</span>-->
+<!--                    </button>-->
+<!--                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-notifications-dropdown">-->
+<!--                        <div class="p-3">-->
+<!--                            <div class="row align-items-center">-->
+<!--                                <div class="col">-->
+<!--                                    <h6 class="m-0"> Notifications </h6>-->
+<!--                                </div>-->
+<!--                                <div class="col-auto">-->
+<!--                                    <a href="#!" class="small text-reset text-decoration-underline"> Unread (3)</a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div data-simplebar="init" style="max-height: 230px;"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" style="height: auto; overflow: hidden;"><div class="simplebar-content" style="padding: 0px;">-->
+<!--                        -->
+<!--                        </div></div></div></div>-->
+<!--                        <div class="simplebar-placeholder" style="width: 0px; height: 0px;"></div>-->
+<!--                    </div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">-->
+<!--                        <div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: hidden;"><div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;"></div></div></div>-->
+<!--                        <div class="p-2 border-top d-grid">-->
+<!--                            <a class="btn btn-sm btn-link font-size-14 text-center" href="javascript:void(0)">-->
+<!--                                <i class="mdi mdi-arrow-right-circle me-1"></i> <span>View More..</span> -->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+                <div class="dropdown d-inline-block">
+                    <!-- <button type="button" class="btn header-item bg-soft-light " id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="rounded-circle header-profile-user" src="{% static 'cpanel/images/profile.jpg' %}" alt="Header  ">
+                        <span class="d-none d-xl-inline-block ms-1 fw-medium pr-text">{% if request.session.user_name %} {{request.session.user_name}} {% endif %}</span>
+                        <i class="fa fa-angle-down d-none d-xl-inline-block"  aria-hidden="true"></i>
+                    </button> -->
+                    <div class="dropdown-menu dropdown-menu-end prf-dwn">
+                        <!-- item-->
+<!--                        <a class="dropdown-item" href=" ">-->
+<!--                        <i class="fa fa-user font-size-16 align-middle me-1" aria-hidden="true"></i>Profile</a>-->
+<!--                        <a class="dropdown-item" href=" ">-->
+<!--                        <i class="fa fa-lock font-size-16 align-middle me-1" aria-hidden="true"></i>  Lock Screen</a>-->
+<!--                        <div class="dropdown-divider"></div>-->
+                        <a class="dropdown-item" href="{% url 'admin_logout' %}">
+                        <i class="fa fa-sign-out font-size-16 align-middle me-1" aria-hidden="true"></i> Logout</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+</div>

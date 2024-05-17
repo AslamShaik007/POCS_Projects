@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+
+<!-- Meta -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Title -->
+<title>Soup - Restaurant with Online Ordering System Template</title>
+<link rel="stylesheet" href="/static/assets/css/themes/theme-beige.min.css">
+
+{% include 'include/topstyle.html' %}
+</head>
+
+<body>
+<div id="preloader"></div>
+<div class="footer-parallax-container">
+{% include 'include/header.html' %}
+
+<div class="header-title ken-burn white" style="background:url(/static/assets2/images/bg-23.jpg)">
+    <div class="container">
+        <div class="title-base">
+            <hr class="anima" />
+            <h1>Menu grid</h1>
+            <p>Menu and portfolio</p>
+        </div>
+    </div>
+</div>
+<div id="content">
+<!-- Page Content -->
+<div class="page-content menu-style">
+    <div class="section-bg-image parallax-window" data-bleed="0" data-natural-height="2500" data-natural-width="1920" data-parallax="scroll" data-image-src="../images/hd-portrait-2.jpg">
+        <div class="container content">
+            <div class="row">
+                {% if data %}
+                {% for category in data %}
+                <div class="col-md-9">
+                    <h3 id="{{category.category_name}}" class="text-black">{{category.category_name}}</h3>
+                    <div class="maso-list list-sm-6 col-margins"> 
+                        <div class="maso-box row" data-lightbox-anima="fade-top">
+                            {% for itemsdata in category.items %} 
+                            <div data-sort="1" class="maso-item col-md-6 cat2">
+                                <div class="img-box adv-img adv-img-full-content">
+                                    <div class="img-box">
+                                        <img src="{{itemsdata.image}}" alt="" style = "height:250px">
+                                    </div>
+                                    <span class="caption-bg img-box open-homeEvents" data-id="{{category.category_id}}" data-target="#productModal{{itemsdata.item_id}}" data-toggle="modal">
+                                        <div class="caption">
+                                            <div class="inner">
+                                                <h2>{{itemsdata.item_name}}</h2>
+                                                <p class="sub"> {{itemsdata.item_desc}} </p>
+                                                <p class="sub"> {{itemsdata.item_id}} </p>
+                                            </div>
+                                        </div>
+                                    </span>
+                                    <div class="col-sm-6 text-sm-right">
+                                        <div class="container mt-3">
+                                            <h3>Modal Example</h3>
+                                            <p>Click on the button to open the modal.</p>
+                                            
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal{{itemsdata.item_id}}">
+                                              Open modal
+                                            </button>
+                                          </div>
+                                          
+                                          <!-- The Modal -->
+                                          <div class="modal" id="#productModal{{itemsdata.item_id}}">
+                                            <div class="modal-dialog">
+                                              <div class="modal-content">
+                                          
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                  <h4 class="modal-title">Modal Heading</h4>
+                                                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                </div>
+                                          
+                                                <!-- Modal body -->
+                                                <div class="modal-body">
+                                                  Modal body..
+                                                </div>
+                                          
+                                                <!-- Modal footer -->
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                          
+                                              </div>
+                                            </div>
+                                          </div>
+                                        <span class="text-md mr-4"><span class="text-muted">$</span> {{itemsdata.price}}</span> 
+                                        <button class="btn btn-outline-secondary btn-sm " data-id="{{category.category_id}}" data-bs-target="#productModal{{itemsdata.item_id}}" data-toggle="modal"><span>Add More</span></button>
+                                          
+                                        <div class="modal fade text-sm-left" id="productModal{{itemsdata.item_id}}" role="dialog">
+                                            <form id="formid{{itemsdata.item_id}}" action="/add_to_cart" method="POST">
+                                                {% csrf_token %}
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header modal-header-lg dark bg-dark">
+                                                                <div class="bg-image"><img src="{{itemsdata.image}}" alt=""></div>
+                                                                <h4 class="modal-title">{{category.category_name}}</h4>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size: x-large;">
+                                                                    <i class="ti-close" style="font-weight: bold;"></i></button>
+                                                            </div>
+                                                            <div class="modal-product-details">
+                                                                <div class="row align-items-center">
+                                                                    <div class="col-9">
+                                                                        <h6 class="mb-0" id="idHolder"></h6>
+                                                                        <span class="text-muted">{{itemsdata.item_name}}</span>
+                                                                    </div>
+                                                                    <div class="col-3 text-lg text-right">${{itemsdata.price}}</div>
+                                                                </div>
+                                                            </div>
+                                                
+                                                            <div class="modal-body panel-details-container">
+                                                                <!-- Panel Details / Size -->
+                                                                <!----  {{itemsdata.selection_type}}-->
+                                                                <div class="panel-details">
+                                                                    {% if itemsdata.subitems %}
+                                                                    <h5 class="panel-details-title">
+                                                                        > Choose from below options
+                                                                    </h5>
+                                                                    {% endif %}
+                                                                    <input type="hidden" name='categoryid' value='{{category.category_id}}'>
+                                                                    <input type="hidden" name='itemid' value='{{itemsdata.item_id}}'>
+                                                                    <input type="hidden" name='itemprice' value='{{itemsdata.price}}'>
+                                                                    <input type="hidden" name='itemtitle' value='{{itemsdata.item_name}}'>
+                                                                    <input type="hidden" name='itemimage' value='{{itemsdata.image}}'>
+                                                                    <input type="hidden" name='item_desc' value='{{itemsdata.item_desc}}'>
+                                                
+                                                                    <div id="panelDetailsSize{{itemsdata.item_id}}" class="collapse show">
+                                                                        <div class="panel-details-content">
+                                                                            {% for subitemsdata in itemsdata.subitems %}
+                                                                            {% if itemsdata.selection_type == "Single" %}
+                                                                            <div class="form-group">
+                                                                                <label class="custom-control custom-radio">
+                                                                                    <!----->
+                                                                                    <input type="hidden" id='subitemidcheck' name='subitemidcheck' value='1'>                                                                                 
+                                                                                    <input type="radio" class="custom-control-input" name='subitemid'  value='{{subitemsdata.subitem_id}}'>
+                                                                                    <span class="custom-control-indicator"></span>
+                                                                                    <span class="custom-control-description">{{subitemsdata.sub_item_title}} -
+                                                                                        (${{subitemsdata.price}})</span>
+                                                                                </label>
+                                                                            </div>
+                                                                            {% else %}                                                            
+                                                                                    <div class="form-group">
+                                                                                        <label class="custom-control custom-checkbox">
+                                                                                            <input type="hidden" id='subitemidcheck' name='subitemidcheck' value='0'>
+                                                                                           
+                                                                                            <input type="checkbox" class="custom-control-input" id="subitem_id[]" name="subitem_id[]"
+                                                                                                value="{{subitemsdata.subitem_id}}">
+                                                                                            <span class="custom-control-indicator"></span>
+                                                                                            <span class="custom-control-description">{{subitemsdata.sub_item_title}} -
+                                                                                                (${{subitemsdata.price}})</span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                            {% endif %}
+                                                                            {%endfor%}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <button type="submit" class="modal-btn btn btn-secondary btn-block btn-lg" ><span>Add to Cart</span></button>
+                                                        </div>
+                                                    </div>
+                                            </form>
+                                        </div>                                                   
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <hr class="space" />
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% for category in data %} 
+                <div class="col-md-3">
+                    <div class="fixed-area" data-bottom="150">
+                        <aside id="menu" class="sidebar mi-menu">
+                            <nav class="sidebar-nav">
+                                <ul class="side-menu">
+                                    <li class="active">
+                                        <a href="#{{category.category_name}}">
+                                            <i class="im-cauldron"></i>
+                                            {{category.category_name}}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </aside>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% include 'include/footer.html' %}
+</body> 
+
+<style>
+    .text-sm-rig{ text-align: left !important;}
+    
+</style>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+$(document).on("click", ".open-homeEvents", function () {
+    var category_id = $(this).data('id');
+    // $('#idHolder').html( eventId );     
+        // $('#idHolder').html( eventId );  
+       alert(category_id);  
+        $.ajax({				
+				url: '/category_detail/'+category_id,			   
+				type: 'GET',
+				dataType: 'json',
+			    success: function (data) {						
+					var itemsHtml = '';
+					for (var i = 0; i < data.items.length; i++) {
+                         //alert(data.items[i].image);
+                        var newHTML = "<img src='" + data.items[i].image +"' alt=''>";                       
+                        $("#cate_image").html(newHTML);                       
+                        var mainitem=data.items[i].items[i].selection_type;
+                    alert(mainitem);
+
+						var checkids=localStorage.getItem('selectedIds');
+						if (checkids !== null) {
+							const isCheckeds = checkids.includes(data.items[i].id);							
+						}
+						else {
+							const isCheckeds = '';							
+						}
+					}					
+
+
+
+                       //$(.catlist_${category_id}).html(itemsHtml);
+					   $(".vikasss").html(itemsHtml);
+						$('.catdynamic').html(data.cat[0].name);
+                    },
+				error: function () {
+					console.log('Error fetching category details.');
+				}
+			});
+
+    itemsHtml='';
+    itemsHtml+='<div class="modal-header modal-header-lg dark bg-dark">';
+    itemsHtml+='<div class="bg-image"><img src="assets/img/photos/modal-add.jpg" alt=""></div>';
+    itemsHtml+='<h4 class="modal-title">Specify your dish </h4>';
+    itemsHtml+='<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size: x-large;"><b><i class="ti-close"></b></i>';
+    itemsHtml+='</button></div>';    
+  });
+</script>
+
+</html>

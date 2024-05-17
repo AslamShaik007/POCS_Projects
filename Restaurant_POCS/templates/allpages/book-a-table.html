@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!--[if lt IE 10]> <html  lang="en" class="iex"> <![endif]-->
+<!--[if (gt IE 10)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<!-- Mirrored from templates.framework-y.com/gourmet/pages/menu-list-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 24 Apr 2024 08:35:08 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Menu | List One | Gourmet</title>
+    <meta name="description" content="Gourmet and business HTML template.">
+    {% include 'include/topstyle.html' %}
+</head>
+<body>
+    <div id="preloader"></div>
+    <div class="footer-parallax-container">
+        {% include 'include/header.html' %}
+    
+        <div class="header-title ken-burn white" style="background:url(/static/assets2/images/bg-6.jpg)">
+            <div class="container">
+                <div class="title-base">
+                    <hr class="anima" />
+                    <h1>Book a Table</h1>
+                    <p>Fill the form to book</p>
+                </div>
+            </div>
+        </div>
+        <div class="section-empty book-table">
+            <div class="container content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="book-table-m">
+                        <form action="{% url 'book_a_table' %}" method="POST" id="Bookformsubmit" class="Bookformsubmit">
+                            {% csrf_token %}
+                              <!-- Error message -->
+                          <div class="error-message" style="color: red;">{{ msg }}</div>
+                            <div class="utility-box-content">
+                                <div class="form-group">
+                                    <label>Full Name:</label>
+                                    <input type="text" name="name" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>E-mail:</label>
+                                    <input type="email" name="email" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone:</label>
+                                    <input type="text" name="phone" class="form-control" required>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Date:</label>
+                                            <input type="date" name="date" class="form-control" required style="padding:24px 0px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="status-time" class="form-label">Timings<span id="star_error_ud">*</span>
+                                            </label>
+                                            <input type="time" id="timepicker" name = timings placeholder="--:--" required>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Total Members:</label>
+                                    <input type="number" name="attendents" min="1" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="status-time" class="form-label">Select Table Name <span class="star_error_ud">*</span></label>
+                                    <select class="form-select" aria-label="Default select example" name="table_name" id="table_name" required>
+                                        <option selected="selected">-- select table --</option>
+                                        {% for i in data %}
+                                        <option value="{{ i.id }}">{{ i.table_name }} - Available seating {{ i.no_of_seats }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="utility-box-btn btn btn-secondary btn-block btn-lg btn-submit" type="submit" id="udBtn">
+                                Save
+                            </button>
+                        </form>
+                    </div>
+                    </div>
+                 
+                </div>
+              
+            </div>
+        </div>
+      
+    </div>
+    <i class="scroll-top scroll-top-mobile show fa fa-sort-asc"></i>
+    {% include 'include/footer.html' %}
+</body>
+
+<!-- Mirrored from templates.framework-y.com/gourmet/pages/menu-list-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 24 Apr 2024 08:35:09 GMT -->
+</html>

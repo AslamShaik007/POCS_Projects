@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adhar Card Parser</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0; /* Updated background color */
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .scanner-container {
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 720px;
+            position: relative;
+        }
+
+        .video-wrapper {
+            overflow: hidden;
+            width: 100%;
+            padding-top: 56.25%;
+            position: relative;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .capture-button, .toggle-button {
+            display: block;
+            margin: 20px auto;
+            padding: 8px 12px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .toggle-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Added a style for the Adhar Parser description */
+        .adhar-parser-description {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <p id="modal-message"></p>
+            <button class="ok-button" onclick="closeModal()">OK</button>
+        </div>
+    </div>
+    <div class="scanner-container">
+        <button class="toggle-button" onclick="toggleCamera()">Switch Camera</button>
+        <div class="video-wrapper">
+            <video id="camera-preview" autoplay></video>
+        </div>
+        <button class="capture-button" onclick="captureAndSendImage()">Capture & Process</button>
+        <canvas id="canvas" style="display: none;"></canvas>
+    </div>
+
+    <!-- Description for the "Adhar Parser" feature -->
+    <div class="adhar-parser-description">
+        <h2>Adhar Card Parser</h2>
+        <p>The Adhar Card Parser feature allows you to extract information from Adhar cards. After capturing the image, the system will process it to retrieve card details. The results will be displayed in the modal.</p>
+    </div>
+
+    <script>
+        let useFrontCamera = true; // Start with the front camera by default
+        const videoElement = document.getElementById('camera-preview');
+        const canvasElement = document.getElementById('canvas');
+        const context = canvasElement.getContext('2d');
+
+        // Function to toggle the camera
+        async function toggleCamera() {
+            useFrontCamera = !useFrontCamera;
+            const constraints = { video: { facingMode: useFrontCamera ? 'user' : 'environment' } };
+            startCamera(constraints);
+        }
+
+        // Function to start the camera with specified constraints
+        async function startCamera(constraints) {
+            try {
+                constraints.video.width = { ideal: 1920 };
+                constraints.video.height = { ideal: 1080 };
+
+                const stream = await navigator.mediaDevices.getUserMedia(constraints);
+
+                if (videoElement.srcObject) {
+                    videoElement.srcObject.getTracks().forEach(track => track.stop());
+                }
+                videoElement.srcObject = stream;
+            } catch (error) {
+                console.error("There was an issue accessing the camera: ", error);
+            }
+        }
+
+        // Function to open the modal with a message
+        function openModal(message) {
+            const modalElement = document.getElementById('modal');
+            const modalMessageElement = document.getElementById('modal-message');
+
+            modalMessageElement.textContent = message;
+            modalElement.style.display = 'block';
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            const modalElement = document.getElementById('modal');
+            modalElement.style.display = 'none';
+        }
+
+        // Initialize the camera with the default front camera
+        startCamera({ video: { facingMode: 'user' } });
+
+        // Function to capture and send the image
+        async function captureAndSendImage() {
+            const width = videoElement.videoWidth;
+            const height = videoElement.videoHeight;
+
+            let cropWidth = width;
+            let cropHeight = Math.round(width / 1.7778); // 16:9 ratio
+
+            if (cropHeight > height) {
+                cropHeight = height;
+                cropWidth = Math.round(height * 1.7778);
+            }
+
+            const x = (width - cropWidth) / 2;
+            const y = (height - cropHeight) / 2;
+
+            canvasElement.width = cropWidth;
+            canvasElement.height = cropHeight;
+
+            context.drawImage(videoElement, x, y, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
+
+            const imageData = canvasElement.toDataURL();
+
+            try {
+                const response = await fetch('http://127.0.0.1:8000/parse-adhar/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ image: imageData })
+                });
+
+                const responseData = await response.json();
+                console.log(responseData);
+
+                if (responseData.response === true) {
+                    openModal('Card Details Saved Successfully.');
+                } else if (responseData.response === false) {
+                    openModal('Card Details not found in the image. Please try again.');
+                }
+            } catch (error) {
+                console.error("Error sending image data: ", error);
+            }
+        }
+    </script>
+</body>
+</html>

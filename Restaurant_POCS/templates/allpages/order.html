@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+
+<!-- Meta -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Title -->
+<title>Soup - Restaurant with Online Ordering System Template</title>
+<link rel="stylesheet" href="/static/assets/css/themes/theme-beige.min.css">
+
+{% include 'include/topstyle.html' %}
+</head>
+
+<body>
+<div id="preloader"></div>
+<div class="footer-parallax-container">
+{% include 'include/header.html' %}
+
+<div class="header-title ken-burn white" style="background:url(/static/assets2/images/streetfood/Our-Menu.webp)">
+    <div class="container">
+        <div class="title-base">
+            <hr class="anima" />
+            <h1>Our Menu</h1>
+            <p>Where Flavor Meets Innovation!</p>
+        </div>
+    </div>
+</div>
+<div id="content">
+<!-- Page Content -->
+<div class="section-bg-image parallax-window" data-bleed="0" data-natural-height="2500" data-natural-width="1920" data-parallax="scroll" data-image-src="/static/assets2/images/hd-portrait-2.jpg">
+    <div class="container content">
+        <div class="row">
+            <div class="col-md-9">
+                {% for category in data %}
+                <h3 id="{{category.slug}}" class="text-black">{{category.category_name}}</h3>
+                <div class="maso-list list-sm-6 col-margins">   
+                    <div class="maso-box row" data-lightbox-anima="fade-top">
+                        {% for itemsdata in category.items %}
+                        <div data-sort="4" class="maso-item col-md-6 cat1">
+                            <div class="img-box adv-img adv-img-full-content">
+                                <div class="img-box">
+                                    <img src="{{itemsdata.image}}" alt="" class="img-fluid">
+                                </div>
+                                <a href="#" class="caption-bg img-box" data-id="{{category.category_id}}" data-target="#productModal{{itemsdata.item_id}}" data-toggle="modal">
+                                    <div class="caption">
+                                        <div class="inner">
+                                            <h2>{{itemsdata.item_name}}</h2>
+                                            <p class="sub">{{itemsdata.item_desc}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="price-container">
+                                        <h2>Price ${{itemsdata.price}}</h2>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="modal fade text-sm-left" id="productModal{{itemsdata.item_id}}" role="dialog">
+                            <form id="formid{{itemsdata.item_id}}" action="/add_to_cart" method="POST">
+                                {% csrf_token %}
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content order-pop">
+                                        <div class="modal-header modal-header-lg dark bg-dark">
+                                            <div class="img-box">
+                                                <img src="{{itemsdata.image}}" alt="">
+                                            </div> 
+                                            <div class="cate">
+                                                <h3 class="modal-title">
+                                                    {{category.category_name}}
+                                                </h3>
+                                            </div>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-product-details" style="margin-bottom: -17px;">
+                                            <div class="pd" style="color: #000;">
+                                                <div class="co">
+                                                    <h6 class="mb-0" id="idHolder" style="margin-bottom: 0px;">
+                                                        <span class="text-muted" style="color: #000 !important">{{itemsdata.item_name}}</span>
+                                                    </h6>
+                                                </div>
+                                                <div class="co text-lg text-right" style="color: #000;">
+                                                   <p> ${{itemsdata.price}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body panel-details-container">
+                                            <div class="panel-details">
+                                                {% if itemsdata.subitems %}
+                                                <h4 class="panel-details-title">
+                                                    Choose from below options
+                                                </h4>
+                                                {% endif %}
+                                                <input type="hidden" name='categoryid' value='{{category.category_id}}'>
+                                                <input type="hidden" name='itemid' value='{{itemsdata.item_id}}'>
+                                                <input type="hidden" name='itemprice' value='{{itemsdata.price}}'>
+                                                <input type="hidden" name='itemtitle' value='{{itemsdata.item_name}}'>
+                                                <input type="hidden" name='itemimage' value='{{itemsdata.image}}'>
+                                                <input type="hidden" name='item_desc' value='{{itemsdata.item_desc}}'>
+                                                <div id="panelDetailsSize{{itemsdata.item_id}}" class="collapse show">
+                                                    <div class="panel-details-content">
+                                                        {% for subitemsdata in itemsdata.subitems %}
+                                                        {% if itemsdata.selection_type == "Single" %}
+                                                        <div class="form-group">
+                                                            <label class="custom-control custom-radio">
+                                                                <input type="hidden" id='subitemidcheck' name='subitemidcheck' value='1'>
+                                                                <input type="radio" class="custom-control-input" name='subitemid' value='{{subitemsdata.subitem_id}}'>
+                                                                <span class="custom-control-indicator"></span>
+                                                                <span class="custom-control-description">
+                                                                    {{subitemsdata.sub_item_title}} - (${{subitemsdata.price}})
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                        {% else %}
+                                                        <div class="form-group">
+                                                            <label class="custom-control custom-checkbox">
+                                                                <input type="hidden" id='subitemidcheck' name='subitemidcheck' value='0'>
+                                                                <input type="checkbox" class="custom-control-input" id="subitem_id[]" name="subitem_id[]" value="{{subitemsdata.subitem_id}}">
+                                                                <span class="custom-control-indicator"></span>
+                                                                <span class="custom-control-description">
+                                                                    {{subitemsdata.sub_item_title}} - (${{subitemsdata.price}})
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                <!-- Add Quantity -->
+                                        <div class="quantity-buttons"><h4>Quantity :</h4> 
+                                            <button type="button" class="btn minus-btn">-</button>
+                                            <input type="text" class="quantity-input" value="1" id="quantity-input" name="quantity">
+                                            <button type="button" class="btn plus-btn">+</button>
+                                            <span class="item-price" id="item-price" data-price="{{itemsdata.price}}">${{itemsdata.price}}</span>
+                                        </div>
+                                        <!-- Add Special Instructions -->
+                                        <div class="special-instruction-box">
+                                            <h4>Special Instructions</h4>
+                                            <textarea id="special-instructions" name="special_instructions" value = "special_instructions" rows="4" placeholder="Add any special instructions here..."></textarea>
+                                        </div>
+                                        {% if user.is_authenticated %}
+                                        <button type="button" class="modal-btn btn btn-secondary btn-block btn-lg addItemForm" id="{{itemsdata.item_id}}">
+                                            <span>Add to Cart</span>
+                                        </button>
+                                        {% else %}
+                                        <a href="{% url 'login' %}" class="modal-btn btn btn-secondary btn-block btn-lg">
+                                            <span>Login To Add to Cart</span>
+                                        </a>
+                                        <p class="mt-3">Don't have an account? <a href="{% url 'register' %}" style="color: blue;">Click here to register</a></p>
+                                        {% endif %}
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        {% endfor %}
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-3">
+                <div class="fixed-area" data-bottom="150">
+                    <aside id="menu" class="sidebar mi-menu">
+                        <nav class="sidebar-nav">
+                            <ul class="side-menu">
+                                {% for category in data %}
+                                <li class="active">
+                                    <a href="#{{category.slug}}">
+                                        <i class="im-cauldron"></i>
+                                        {{category.category_name}}
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </nav>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+{% include 'include/footer.html' %}
+</body> 
+
+<style>
+    .text-sm-rig{ text-align: left !important;}
+
+    .special-instruction-box {
+        margin-top: 10px;
+    }
+    
+    .special-instruction-box textarea {
+        width: 90%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical; /* Allow vertical resizing */
+    }
+    
+    .special-instruction-box h4 {
+        margin-bottom: 10px;
+    }
+    .quantity-buttons {
+        display: flex;
+        align-items: center;
+    }
+    
+    .quantity-input {
+        width: 50px;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    
+    .quantity-buttons button {
+        padding: 5px 10px;
+        cursor: pointer;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    
+    .quantity-buttons button:hover {
+        background-color: #e0e0e0;
+    }
+    
+    .minus-btn {
+        border-radius: 4px 0 0 4px;
+    }
+    
+    .plus-btn {
+        border-radius: 0 4px 4px 0;
+    }
+    
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.11.0/sweetalert2.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.11.0/sweetalert2.all.min.js"></script>
+
+<script>
+    $(document).ready(function() {             
+
+        $('.addItemForm').on('click', function() {    
+           // e.preventDefault();
+              var formitemid=$(this).attr("id");              
+              //alert(formitemid);
+            //$('#btnSubmit').val('Please wait...');
+
+            $.ajax({
+                type: 'POST',
+                url: '/add_to_cart',              
+                data: $('#formid'+formitemid).serialize(),
+                success: function(data) {
+                       // alert(data['response']);
+                   // $('#btnSubmit').val('Send Message');
+                    if(data['response']=='success'){                        
+                        swal({
+                            title: "Success",
+                            text: data['msg'],
+                            type: "success",
+                            timer: 3000,  // Set the duration in milliseconds (3 seconds in this example)
+                            timerProgressBar: true,  // Show a progress bar indicating the remaining time
+                            showConfirmButton: false  // Hide the "OK" button
+                        }).then(function() {
+                            window.location.href="{% url 'order' %}";
+                             //$("#productModal"+formitemid).hide();
+                        });
+
+                    } else {
+                        swal({
+                            title: "Error",
+                            text: 'Error: '+data.message,
+                            type: "error",
+                            confirmButtonColor: "#007bff",
+                            confirmButtonText: "Ok",
+                            closeOnConfirm: true
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    $('#btnSubmit').val('Send Message');
+                    swal({
+                        title: "Error",
+                        text: 'Something went wrong: '+error,
+                        type: "error",
+                        confirmButtonColor: "#007bff",
+                        confirmButtonText: "Ok",
+                        closeOnConfirm: true
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+<script>
+$(document).on("click", ".open-homeEvents", function () {
+    var category_id = $(this).data('id');   
+        $.ajax({				
+				url: '/category_detail/'+category_id,			   
+				type: 'GET',
+				dataType: 'json',
+			    success: function (data) {						
+					var itemsHtml = '';
+					for (var i = 0; i < data.items.length; i++) {
+                         //alert(data.items[i].image);
+                        var newHTML = "<img src='" + data.items[i].image +"' alt=''>";                       
+                        $("#cate_image").html(newHTML);                       
+                        var mainitem=data.items[i].items[i].selection_type;
+                    alert(mainitem);
+
+						var checkids=localStorage.getItem('selectedIds');
+						if (checkids !== null) {
+							const isCheckeds = checkids.includes(data.items[i].id);							
+						}
+						else {
+							const isCheckeds = '';							
+						}
+					}	
+                       //$(.catlist_${category_id}).html(itemsHtml);
+					   $(".vikasss").html(itemsHtml);
+						$('.catdynamic').html(data.cat[0].name);
+                    },
+				error: function () {
+					console.log('Error fetching category details.');
+				}
+			});
+
+    itemsHtml='';
+    itemsHtml+='<div class="modal-header modal-header-lg dark bg-dark">';
+    itemsHtml+='<div class="bg-image"><img src="assets/img/photos/modal-add.jpg" alt=""></div>';
+    itemsHtml+='<h4 class="modal-title">Specify your dish </h4>';
+    itemsHtml+='<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="font-size: x-large;"><b><i class="fa fa-close"></b></i>';
+    itemsHtml+='</button></div>';    
+  });
+</script>
+<script>
+    $(document).ready(function() {
+        $(".plus-btn").click(function() {
+            var quantityInput = $(this).siblings(".quantity-input");
+            var quantity = parseInt(quantityInput.val());
+            quantityInput.val(quantity + 1);
+
+            // Update total price
+            updateTotalPrice(quantityInput);
+        });
+
+        $(".minus-btn").click(function() {
+            var quantityInput = $(this).siblings(".quantity-input");
+            var quantity = parseInt(quantityInput.val());
+            if (quantity > 1) {
+                quantityInput.val(quantity - 1);
+
+                // Update total price
+                updateTotalPrice(quantityInput);
+            }
+        });
+
+        // Function to update total price based on quantity
+        function updateTotalPrice(quantityInput) {
+            var quantity = parseInt(quantityInput.val());
+            var price = parseFloat(quantityInput.siblings(".item-price").data("price"));
+            var totalPrice = quantity * price;
+            quantityInput.siblings(".item-price").text("$" + totalPrice.toFixed(2));
+        }
+
+        // Function to update total price when quantity changes
+        $(".quantity-input").on("input", function() {
+            updateTotalPrice($(this));
+        });
+    });
+</script>
+
+</html>
+

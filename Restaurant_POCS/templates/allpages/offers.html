@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Meta -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Title -->
+<title>Soup - Restaurant with Online Ordering System Template</title>
+
+
+{% include 'include/topstyle.html' %}
+<style>
+    .sp-offer .special-offer .special-offer-image {
+         position: relative; 
+        width: 50%; 
+        float: right; 
+        z-index: 1;
+    }
+    .sp-offer .special-offer{
+        display: block;
+        margin: 0 auto;
+        width: 80%
+   }
+   .sp-offer .special-offer.sp-offer-content{
+    width: 100%
+}
+.sp-row {
+    margin-bottom:30px;
+    padding: 10px 0px;
+    box-shadow: 3px 1px 18px 3px #ced2d5;
+}
+.sp-offer .special-offer.sp-offer-content .special-offer-content{
+ width:100%;
+}
+
+/* .sp-offer .special-offer.sp-offer-content .special-offer-content .list-check {
+    column-count: 2;
+} */
+
+</style>
+</head>
+
+<body>
+
+<!-- Body Wrapper -->
+<div id="preloader"></div>
+<div class="footer-parallax-container">
+    {% include 'include/header.html' %}
+
+    <div class="header-title ken-burn-center white" style="background:url(/static/assets2/images/bg-25.jpg)">
+        <div class="container">
+            <div class="title-base">
+                <hr class="anima" />
+                <h1>Best Offers</h1>
+                <p>Give you best offer description here</p>
+            </div>
+        </div>
+    </div>
+    <!-- Page Special Offers -->
+    <div class="page-content sp-offer bg-light">
+            
+        <div class="container">
+            {% if data %}
+                {% for item in data %}
+            <div class="row sp-row">
+                <div class="col-md-4">
+                    <div class="special-offer animated" data-animation="fadeIn">
+                        <img src="{{MEDIA_URL}}{{item.image}}" alt="" class="special-offer-image1">
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="special-offer sp-offer-content animated" data-animation="fadeIn">
+                        <div class="special-offer-content">
+                            <h2 class="mb-2">{{item.title}}</h2>
+                            <h5 class="text-muted mb-5">{{item.description}}</h5>
+                            <ul class="list-check text-lg mb-0">
+                                <li>Actual Price : {{item.price}}$</li>
+                                <li>Dscount Price : {{item.discount}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+
+    {% include 'include/footer.html' %}
+</body>
+</html>

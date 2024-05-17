@@ -1,0 +1,119 @@
+{% extends 'controlPanel/includes/base.html' %}
+{% load static %} <!-- THIS IS TO LOAD THE STATIC FOLDER -->
+<!-- {#  {% load globalfun %}  #} -->
+
+<!-- THIS IS FOR PAGE TITLE -->
+{% block title %}
+  {{page_title}}
+{% endblock title %}
+
+<!-- THIS IS FOR CONTENTS OF THE PAGE -->
+{% block pagecontents %}
+
+<section id="content-wrapper">
+
+  <div class="row mt-3 p-2">
+
+    <div class="col-md-9">
+      <div class="breadcrumb-wrapper">
+        <span>
+          	<a title="" href="{% url 'dashboard' %}"><i class="fa fa-angle-left fa-dlt" aria-hidden="true"></i> &nbsp;&nbsp;Dashboard&nbsp;</a>
+        </span>
+        <span class="ttm-bread-sep"> / </span>
+        <span> Contact Us Details </span>
+    </div>
+
+  </div>
+
+  <div class="row mt-1 mb-5">
+    <section id="content-wrapper">
+      <div class="row  g-6 mb-6 mt-3">
+        <div class="col-sm-12">
+          <div class="card p-4">
+            <div class="row">
+              <div class="col-md-6">
+                <h1 class="d-heading font-semibold text-muted text-sm d-block mb-2">Contact Us Details</h1>
+              </div>
+
+            </div>
+
+            <div class="row mt-3">
+                <table id="dtReportstable" class="display nowrap" style="width:100%">
+                  <thead>
+                    <tr>
+                        <th>S.NO.</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Message</th>
+                        <th>Reason Contact</th>
+                        <th>Subscribe</th>
+                        <th>Created At</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    {% if listings %} 
+
+                        {% for value in listings %}
+
+                        <tr>
+                          <td>{{ forloop.counter }}</td>
+                          <td>{{value.name}}</td>
+                          <!-- <td>{{value.phone}}</td> -->
+                          <td><div style="display: inline-block;cursor: pointer;" > {{value.phone}}</div></td>
+                          <!-- <td><a href="#" class="phone-link" data-phone="{{ value.phone }}">{{ value.phone }}  <i class="fa fa-phone"></i></a></td> -->
+                          <td>{{value.email}}</td>
+                          <td>{{value.message}}</td>
+                          <td>{{value.reason_contact}}</td>
+                          <td>{{value.subscribe}}</td>
+                          <td>{{value.created_at}}</td>
+                        </tr>
+
+                        {% endfor %}
+                    {% endif %}
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+</section>
+
+{% endblock pagecontents %}
+
+{% block udfooterscripts %}
+<!-- <script>
+  // JavaScript code to handle clicking on phone numbers
+  document.addEventListener("DOMContentLoaded", function() {
+    const phoneLinks = document.querySelectorAll(".phone-link");
+    phoneLinks.forEach(function(link) {
+      link.addEventListener("click", function(event) {
+        event.preventDefault();
+        const phone = this.dataset.phone;
+        // AJAX POST request to your API endpoint using jQuery
+        $.ajax({
+          type: 'POST',
+          url: 'https://billing.vitelglobal.com/clicktocall/index.php',
+          data: {
+            fromnum: '407',
+            tonum: '01191' + phone,
+            vitelusername: 'pranathiss'
+          },
+          dataType: 'text-json',
+          success: function(resultData) {
+            alert("Success")
+            console.log('API request successful');
+            // You can handle the response here if needed
+            //window.open('https://billing.vitelglobal.com/clicktocall/index.php?fromnum=407&tonum=01191' + phone + '&vitelusername=pranathiss');
+          }
+        });
+      });
+    });
+  });
+</script> -->
+{% endblock udfooterscripts %}

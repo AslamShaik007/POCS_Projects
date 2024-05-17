@@ -1,0 +1,181 @@
+{% extends 'controlPanel/includes/base.html' %}
+{% load static %} <!-- THIS IS TO LOAD THE STATIC FOLDER -->
+<!-- {#  {% load globalfun %}  #} -->
+
+<!-- THIS IS FOR PAGE TITLE -->
+{% block title %}
+  {{page_title}}
+{% endblock title %}
+
+<!-- THIS IS FOR CONTENTS OF THE PAGE -->
+{% block pagecontents %}
+
+{% comment %} {{listings}} {% endcomment %}
+{% comment %} {{items_with_categories}} {% endcomment %}
+
+<section id="content-wrapper">
+
+  <div class="row mt-3 p-2">
+
+    <div class="col-md-9">
+      <div class="breadcrumb-wrapper">
+        <span>
+          	<a title="" href="{% url 'dashboard' %}"><i class="fa fa-angle-left fa-dlt" aria-hidden="true"></i> &nbsp;&nbsp;Dashboard&nbsp;</a>
+        </span>
+        <span class="ttm-bread-sep"> / </span>
+        <span> Item </span>
+    </div>
+
+  </div>
+
+  <div class="col-md-6 d-md-flex justify-content-md-end" style="margin-left: 46%;">
+    <a href="{% url 'add_item' %}">
+      <button type="button" class="btn btn-primary btn-violet btn-violet ">
+        Add New
+      </button>  
+    </a>
+  </div>
+
+  <div class="row mt-1 mb-5">
+    <section id="content-wrapper">
+      <div class="row  g-6 mb-6 mt-3">
+        <div class="col-sm-12">
+          <div class="card p-4">
+            <div class="row">
+              <div class="col-md-6">
+                <h1 class="d-heading font-semibold text-muted text-sm d-block mb-2">Item</h1>
+              </div>
+
+              {% comment %} <div class="col-md-6">
+                <div class="col-md-6">
+                  <div class="d-grid gap-2 d-md-block d-md-flex justify-content-end">
+                    <button type="button" id="" onclick="location.href='{% url 'add_item_subitem' %}'" class="btn btn-primary btn-violet btn-violet">Add New</button>
+                  </div>
+                </div>
+              </div> {% endcomment %}
+
+            </div>
+
+            <div class="row mt-3">
+                <table id="dtReportstable" class="display nowrap" style="width:100%">
+                  <thead>
+                    <tr>
+                        <th>S.NO.</th>
+                        <th>Category Name</th>
+                        <th>Item Name</th>
+                        <th>Price</th>
+                        <th>Popular</th>
+                        <th>Status</th>
+                        <th>Display Order</th>
+                        {% comment %} <th>Created At</th> {% endcomment %}
+                        <th>Item Image</th>
+                        <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    {% if listings %}
+
+                        {% for value in listings %}
+
+                        <tr>
+                          <td>{{ forloop.counter }}</td>
+                          <td>{{value.item.category_id__category_name}}</td>
+                          <td>{{value.item.item_name}}</td>
+                          <td>{{value.item.price}}</td>
+                          <td>{% if value.item.popular == 1 %} {{ 'Yes' }} {% elif  value.item.popular == 0 %} {{ 'No' }} {% endif %}</td>
+                          <td>{% if value.item.status == 1 %} {{ 'Active' }} {% elif  value.item.status == 0 %} {{ 'Inactive' }} {% endif %}</td>
+                          <td>{{value.item.display_order}}</td>
+                          {% comment %} <td>{{value.item.created_at}}</td> {% endcomment %}
+                          <td><a target="_blank" href="{{MEDIA_URL}}{{ value.item.image }}"><img class="image_size_ud" src="{{MEDIA_URL}}{{ value.item.image }}"></a></td>
+                          <td>
+                            <a href="{% url 'update_item' value.item.id %}" >  <img src="{% static 'cpanel/images/edit.png' %}"></a>
+                            <a href="#" onclick="deleteThisUd('{{value.item.id}}');" class="ms-3 deleteRowButton">  <img src="{% static 'cpanel/images/delete.png' %}"></a>
+                        </td>
+                        </tr>
+
+                        {% endfor %}
+                    {% endif %}
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+</section>
+
+{% endblock pagecontents %}
+
+{% block udfooterscripts %}
+
+  <script>
+    function deleteThisUd(value){
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this details!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: '#e39127',
+        cancelButtonColor: '#000000',
+        confirmButtonText: 'Yes, I am sure!',
+        cancelButtonText: "No, cancel it!",
+        closeOnConfirm: true,
+        closeOnCancel: true,
+        allowOutsideClick: false
+      }).then(function(){
+          var csrfmiddlewaretoken = "{{csrf_token}}";
+          // Send the data using post
+          $.ajax({
+            type: "POST",
+            url: "{% url 'delete_item' %}",
+            data: { 'baseId' : value, 'csrfmiddlewaretoken':csrfmiddlewaretoken },
+            dataType : 'json',
+            success: function(result){
+              // Do something with the response result
+              //alert(result);
+              console.log(result);
+              if(result.response == 'success'){
+                swal({
+                    title: "Success",
+                    type: "success",
+                    text: result.msg,
+                    confirmButtonColor: "#007bff",
+                    confirmButtonText: "Ok",
+                    closeOnConfirm: true
+                }).then(function(){
+                    location.reload();
+                });
+              }else if(result.response == 'notdeleted'){
+                swal({
+                  title: result.title,
+                  type: result.icon,
+                  text: result.msg,
+                  confirmButtonColor: "#007bff",
+                  confirmButtonText: "Ok",
+                  closeOnConfirm: true
+                }).then(function(){
+                    location.reload();
+                });
+              }else{
+                swal({
+                  title: 'Error',
+                  type: 'warning',
+                  text: 'Something went wrong',
+                  confirmButtonColor: "#007bff",
+                  confirmButtonText: "Ok",
+                  closeOnConfirm: true
+                }).then(function(){
+                    location.reload();
+                });
+              }
+            }
+          });
+      });
+    }
+  </script>
+
+{% endblock udfooterscripts %}

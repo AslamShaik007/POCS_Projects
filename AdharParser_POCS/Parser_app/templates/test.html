@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Summary Generator</title>
+        <!-- Bootstrap CSS Lib -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <!-- Font Awesome Icons Lib -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="../static/assets/CSS/site.css">
+    </head>
+    <body id="UploadVideoBodyBg" class="UploadVideoBodyBg">
+
+        <div class="container-fluid" id="VideoUploadBodyBackGround" >
+            <div class="row">
+                <div class="col-xxl-11 col-xl-11 col-lg-11 col-md-11 col-sm-12 col-12 mx-auto pt-3">
+                    <div class="TopHeader">
+                        <img src="../static/assets/Images/Logo_Black.png" alt="Logo_Black" class="Logo_Black_Img" />
+                    </div>
+                </div>
+            </div>
+            <div class="row px-5 position-relative">
+                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-11 col-sm-12 col-12 VectorImgBackground mx-auto">
+                    <div class="row">
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12 pt-3">
+                            <div class="card border-0 bg-transparent">
+                                <div class="card-body">
+                                    <form id="EmotonDetectorVideoForm" class="EmotonDetectorVideoForm" method="post", enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="EmotonDetectorVideoUploadContainer">
+                                            <div class="FormGroup text-center">
+                                                <div class="FileUploadContainer3">
+                                                    <label for="upload3" class="DarkBlue_Color font_weight_500 FileUploadLable3">
+                                                        <input type="file" name="file[]" class="file_multi_video" accept="video/*" id="upload3" >
+                                                        <video width="600" height=500 controls>
+                                                            <source src="mov_bbb.mp4" id="video_here">
+                                                          </video>                                                          
+                                                        <span id="uploadVideoFilesTitle" class="font_20">Upload the Video files</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row pt-4 pb-4">
+                                            <div class="col-10 mx-auto">
+                                                <div class="BtnGroup text-center" id="EmotonDetectorVideoFormBtnContainer">
+                                                    <button type="submit" class="btn text-white LightGreen_BgColor font_40 px-5">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+
+                                        <!-- <div class="row">
+                                            <div class="col-10 LightGrey_BgColor py-3 mx-auto" id="FileUploadProgressBars">
+                                                <div class="pb-3">
+                                                    <div class="progressBarText">
+                                                        <div class="row">
+                                                            <div class="col-sm-8 col-12 LgithMediumGrey_Color">
+                                                                <span class="fileName">Colander-form.jpg</span>
+                                                                <span class="fileSize">120 Kb</span>
+                                                            </div>
+                                                            <div class="col-sm-4 col-12 text-end">
+                                                                <span class="FileUploadedStatus LightGreen_Color">Completed</span>
+                                                                <i class="fa fa-check-circle-o LightGreen_Color" aria-hidden="true"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-success" role="progressbar" aria-label="Success example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="pb-3">
+                                                    <div class="progressBarText">
+                                                        <div class="row">
+                                                            <div class="col-sm-8 col-12 LgithMediumGrey_Color">
+                                                                <span class="fileName">Hrms-form.png</span>
+                                                                <span class="fileSize">160 Kb</span>
+                                                            </div>
+                                                            <div class="col-sm-4 col-12 text-end">
+                                                                <span class="FileUploadedStatus LightGreen_Color"></span>
+                                                                <i class="fa fa-times LgithMediumGrey_Color" aria-hidden="true"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-success" role="progressbar" aria-label="Success example" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="pb-3">
+                                                    <div class="progressBarText">
+                                                        <div class="row">
+                                                            <div class="col-sm-8 col-12 LgithMediumGrey_Color">
+                                                                <span class="fileName">Tax deduction-form.png</span>
+                                                                <span class="fileSize">110 Kb</span>
+                                                            </div>
+                                                            <div class="col-sm-4 col-12  text-end">
+                                                                <span class="FileUploadedStatus LightGreen_Color"></span>
+                                                                <i class="fa fa-times LgithMediumGrey_Color" aria-hidden="true"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-success" role="progressbar" aria-label="Success example" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+
+                                        <!-- <div class="row pt-4 pb-4">
+                                            <div class="col-10 mx-auto">
+                                                <div class="BtnGroup d-grid" id="EmotonDetectorVideoFormBtnContainer">
+                                                    <button type="submit" class="btn bg-warning font_20">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                    </form>                                
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-4 col-sm-12 col-12">
+                            <div class="d-xxl-block d-xl-block d-lg-block d-md-block d-sm-block d-block">
+                                <h2 class="font_73"><span class="DarkBlue4_Color">You Can upload a Video  </span> <span class="LightOrange_Color"> you want to generate to Subtitle</span></h2>
+                            </div>
+                            <form id="UploadVieoForm" class="UploadVieoForm" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row my-5">
+                                    <div class="col-md-4 col-sm-6 col-12">
+                                        <div class="FormGroup">
+                                            <select class="form-select border-0 shadow font_30" aria-label="Default select example">
+                                                <option selected value="none">None</option>
+                                                <option value="1">English</option>
+                                                <option value="2">Hindi</option>
+                                                <option value="3">Tamil</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6 col-12">
+                                        <div class="ButtonGroup">
+                                            <button type="button" class="btn btn-transparent border shadow font_30"><i class="fa fa-check-circle-o LightGreen_Color" aria-hidden="true"></i> Sub-Titles</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <div class="imgcontainer">
+                                                    <img src="../static/assets/Images/fi_2009890.png" alt="play image" class="img-fluid" />
+                                                </div>
+                                            </div>
+                                            <div class="col-10">
+                                                
+                                                <div class="progressBarText">
+                                                    <div class="row">
+                                                        <div class="col-sm-8 col-12 LgithMediumGrey_Color">
+                                                            <span class="fileName">Tax deduction-form.png</span>
+                                                            <span class="fileSize">110 Kb</span>
+                                                        </div>
+                                                        <div class="col-sm-4 col-12  text-end">
+                                                            <span class="FileUploadedStatus LightGreen_Color"></span>
+                                                            <!-- <i class="fa fa-times LgithMediumGrey_Color" aria-hidden="true"></i> -->
+                                                            <img src="../static/assets/Images/fi_660252.png" alt="cross btn" />
+                                                        </div>
+                                                    
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-success" role="progressbar" aria-label="Success example" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <img src="../static/assets/Images/icon.png" alt="Icon_1" class=" Icon_Image Icon_Img_1  position-absolute" />
+                <img src="../static/assets/Images/icon_1.png" alt="Icon_2" class=" Icon_Image Icon_Img_2  position-absolute" />
+                <img src="../static/assets/Images/icon_2.png" alt="Icon_3" class=" Icon_Image Icon_Img_3  position-absolute" />
+                <img src="../static/assets/Images/icon_3.png" alt="Icon_4" class=" Icon_Image Icon_Img_4  position-absolute" />
+                
+            </div>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+
+       
+  </body>
+</html>
+
+
+<script>
+
+$(document).on("change", ".file_multi_video", function(evt) {
+    var $source = $('#video_here');
+    $source[0].src = URL.createObjectURL(this.files[0]);
+    $source.parent()[0].load();
+  });
+</script>

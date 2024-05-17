@@ -1,0 +1,240 @@
+{% extends 'controlPanel/includes/base.html' %}
+{% load static %} <!-- THIS IS TO LOAD THE STATIC FOLDER -->
+<!-- {#  {% load globalfun %}  #} -->
+
+<!-- THIS IS FOR PAGE TITLE -->
+{% block title %}
+  {{page_title}}
+{% endblock title %}
+
+<!-- THIS IS FOR CONTENTS OF THE PAGE -->
+{% block pagecontents %}
+
+{% comment %} {{listings}} {% endcomment %}
+
+<section id="content-wrapper">
+
+  <div class="row mt-3 p-2">
+
+    <div class="col-md-9">
+      <div class="breadcrumb-wrapper">
+        <span>
+          	<a title="" href="{% url 'dashboard' %}"><i class="fa fa-angle-left fa-dlt" aria-hidden="true"></i> &nbsp;&nbsp;Dashboard&nbsp;</a>
+        </span>
+        <span class="ttm-bread-sep"> / </span>
+        <span> Tables </span>
+    </div>
+    <!-- {% comment %} <div class="row g-3 mt-3 p-8">
+          
+            <form id="getreportsForm" class="getReportsForm" action="" method="post" >
+			<div class="row">
+			<div  class="col-md-4">
+              {% csrf_token %}
+				<div class="row">
+					<div class="col-md-6">
+						<label for="start" class="text-capitalize">Start date: </label>&nbsp;
+						<input type="date" id="start" name="startdate" class="form-control"> &nbsp;&nbsp;
+					</div>
+					<div class="col-md-6">
+						<label for="end" class="text-capitalize">End date: </label>&nbsp;
+						<input type="date" id="end" name="enddate"  class="form-control">
+					</div>
+				</div>
+           </div>
+            <div class="col-md-3">
+				<label for="selectshift" class="text-capitalize">Select Shift: </label>&nbsp;
+				<select class="form-select   mb-3" aria-label=".form-select-lg example" name="shift-name" id="shift-name">
+					<option value="">--Select--</option>
+					<option value="Second Shift">Second Shift</option>
+					<option value="Morning Shift">Morning Shift</option>
+					<option value="Afternoon Shift">Afternoon Shift</option>
+					<option value="Evening Shift">Evening Shift</option>
+				</select> &nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="col-md-3">
+				<label for="selectdept" class="text-capitalize">Select Department: </label>&nbsp;
+				<select class="form-select   mb-3" aria-label=".form-select-lg example" name="dept-name" id="dept-name">
+					<option value="">--Select--</option>
+					<option value="QA Department">QA Department</option>
+					<option value="Digital Marketing">Digital Marketing</option>
+					<option value="Development">Development</option>
+					<option value="HR Department">HR Department</option>
+					<option value="VG Development">VG Development</option>
+					<option value="IT">IT</option>
+				</select>&nbsp;&nbsp;&nbsp;&nbsp;
+
+            </div>
+
+       <div class="col-md-2">
+		<label class="invisible d-block">Search</label>
+        <button  id="btnsearch" type="submit" class="btn btn-outline-secondary  search-custom"  ><i class="fa fa-search" aria-hidden="true"></i>
+         </button>
+	<span>
+             <button onclick="location.href=''"  id="refreshBtn" type="submit" class="btn btn-outline-secondary search-custom"  ><i class="fa fa-refresh" aria-hidden="true"></i></button>
+        </span>
+
+       </div>
+	</div>
+       </form>
+    </div> {% endcomment %} -->
+
+
+  </div>
+
+  <div class="col-md-6 d-md-flex justify-content-md-end" style="margin-left: 46%;">
+    <a href="{% url 'create_table' %}">
+      <button type="button" class="btn btn-primary btn-violet btn-violet ">
+        Add New
+      </button>  
+    </a>
+  </div>
+
+  <div class="row mt-1 mb-5">
+    <section id="content-wrapper">
+      <div class="row  g-6 mb-6 mt-3">
+        <div class="col-sm-12">
+          <div class="card p-4">
+            <div class="row">
+              <div class="col-md-6">
+                <h1 class="d-heading font-semibold text-muted text-sm d-block mb-2">Tables</h1>
+              </div>
+
+              <!-- {% comment %} <div class="col-md-6">
+                <div class="col-md-6">
+                  <div class="d-grid gap-2 d-md-block d-md-flex justify-content-end">
+                    <button type="button" id="" onclick="location.href='{% url 'add_category' %}'" class="btn btn-primary btn-violet btn-violet">Add New</button>
+                  </div>
+                </div>
+              </div> {% endcomment %} -->
+              
+              <!-- {% comment %} <div class="col-md-6">
+                <div class="col-md-6">
+                  <div class="d-grid gap-2 d-md-block d-md-flex justify-content-end">
+                    <button type="button" id="btndownload" class="btn btn-primary btn-violet btn-violet">Download</button>
+                  </div>
+                </div>
+              </div> {% endcomment %} -->
+
+            </div>
+
+            <div class="row mt-3">
+                <table id="dtReportstable" class="display nowrap" style="width:100%">
+                  <thead>
+                    <tr>
+                        <th>S.NO.</th>
+                        <th>Table Name</th>
+                        <th>No Of Seats</th>
+                        <th>Satus</th>
+                        <th>From Time</th>
+                        <th>To Time</th>
+                        <th>Created At</th>
+                        <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    {% if listings %}
+                        {% for value in listings %}
+
+                        <tr>
+                          <td>{{ forloop.counter }}</td>
+                          <td>{{value.table_name}}</td>
+                          <td>{{value.no_of_seats}}</td>
+                          <td>{{value.status}}</td>
+                          <td>{{value.from_time}}</td>
+                          <td>{{value.to_time}}</td>
+                          <td>{{value.created_at}}</td>
+                          <!-- <td>{% if value.status == 1 %} {{ 'Active' }} {% elif  value.status == 0 %} {{ 'Inactive' }} {% endif %}</td> -->
+                          <!-- <td>{{value.display_order}}</td> -->
+                          
+                          <td>
+                            <a href="{% url 'update_table' value.id %}" >  <img src="{% static 'cpanel/images/edit.png' %}"></a>
+                            <a href="#" onclick="deleteThisUd('{{value.id}}');" class="ms-3 deleteRowButton">  <img src="{% static 'cpanel/images/delete.png' %}"></a>
+                        </td>
+                        </tr>
+
+                        {% endfor %}
+                    {% endif %}
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+</section>
+
+{% endblock pagecontents %}
+
+{% block udfooterscripts %}
+
+  <script>
+    function deleteThisUd(value){
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this details!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: '#e39127',
+        cancelButtonColor: '#000000',
+        confirmButtonText: 'Yes, I am sure!',
+        cancelButtonText: "No, cancel it!",
+        closeOnConfirm: true,
+        closeOnCancel: true,
+        allowOutsideClick: false
+      }).then(function(){
+          var csrfmiddlewaretoken = "{{csrf_token}}";
+          // Send the data using post
+          $.ajax({
+            type: "POST",
+            url: "{% url 'delete_table' %}",
+            data: { 'baseId' : value, 'csrfmiddlewaretoken':csrfmiddlewaretoken },
+            dataType : 'json',
+            success: function(result){
+              // Do something with the response result
+              //alert(result);
+              console.log(result);
+              if(result.response == 'success'){
+                swal({
+                    title: "Success",
+                    type: "success",
+                    text: result.msg,
+                    confirmButtonColor: "#007bff",
+                    confirmButtonText: "Ok",
+                    closeOnConfirm: true
+                }).then(function(){
+                    location.reload();
+                });
+              }else if(result.response == 'notdeleted'){
+                swal({
+                  title: result.title,
+                  type: result.icon,
+                  text: result.msg,
+                  confirmButtonColor: "#007bff",
+                  confirmButtonText: "Ok",
+                  closeOnConfirm: true
+                }).then(function(){
+                    location.reload();
+                });
+              }else{
+                swal({
+                  title: 'Error',
+                  type: 'warning',
+                  text: 'Something went wrong',
+                  confirmButtonColor: "#007bff",
+                  confirmButtonText: "Ok",
+                  closeOnConfirm: true
+                }).then(function(){
+                    location.reload();
+                });
+              }
+            }
+          });
+      });
+    }
+  </script>
+
+{% endblock udfooterscripts %}

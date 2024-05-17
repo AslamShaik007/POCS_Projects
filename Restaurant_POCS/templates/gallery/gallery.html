@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+
+<!-- Meta -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Title -->
+<title>Soup - Restaurant with Online Ordering System Template</title>
+
+
+{% include 'include/topstyle.html' %}
+</head>
+
+<body>
+<div id="preloader"></div>
+<div class="footer-parallax-container">
+
+    {% include 'include/header.html' %}
+<div class="footer-parallax-container">
+    <div class="header-title ken-burn white" style="background:url(/static/assets2/images/bg-28.jpg)">
+        <div class="container">
+            <div class="title-base">
+                <hr class="anima" />
+                <h1>Photos & videos</h1>
+                <p>Multimedia gallery</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section-empty section-item">
+        <div class="container content">
+            <div class="maso-list gallery">
+                <div class="maso-box row" data-lightbox-anima="show-scale">
+                    {% if gallerylisting %}
+                    {% for gallerys in gallerylisting %}
+                    <div data-sort="" class="maso-item col-md-4 cat1">
+                        <a class="img-box i-bottom-right" href="{{MEDIA_URL}}{{gallerys.image}}">
+                            <i class="im-old-camera"></i>
+                            <img src="{{MEDIA_URL}}{{gallerys.image}}" alt="" />
+                        </a>
+                    </div>
+                    <div class="clear"></div>
+                    {% endfor %}
+                {% endif %}
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+    {% include 'include/footer.html' %}
+
+</body> 
+</html>

@@ -1,0 +1,721 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home | Wine | Gourmet</title>
+    <meta name="description" content="Multipurpose HTML template.">
+    <script src="/static/assets2/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="/static/assets2/js/bootstrap/css/bootstrap.css">
+    <script src="/static/assets2/js/script.js"></script>
+    <link rel="stylesheet" href="/static/assets2/style.css">
+     <link rel="stylesheet" href="/static/assets2/css/menu.css">
+    <link rel="stylesheet" href="/static/assets2/css/content-box.css">
+    <link rel="stylesheet" href="/static/assets2/css/image-box.css">
+    <link rel="stylesheet" href="/static/assets2/css/animations.css">
+    <link rel="stylesheet" href='/static/assets2/css/components.css'>
+    <link rel="stylesheet" href='/static/assets2/js/flexslider/flexslider.css'>
+    <link rel="stylesheet" href='/static/assets2/js/magnific-popup.css'>
+    <link rel="stylesheet" href='/static/assets2/js/php/contact-form.css'>
+    <link rel="stylesheet" href='/static/assets2/js/social.stream.css'>
+    <link rel="icon" href="/static/assets2/images/favicon.png">
+    <link rel="stylesheet" href="/static/assets2/skin.css"><!-- Extra optional content header -->
+
+    <!-- Favicons -->
+    <style>
+        a {
+            color: blue;
+        }
+    </style>
+
+</head>
+<body class="footer-parallax-container">
+
+        <header class="fixed-top bg-white scroll-change wide-area" data-menu-anima="fade-in">
+            <div class="navbar navbar-default mega-menu-fullwidth navbar-fixed-top" role="navigation">
+                <div class="navbar navbar-main">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <div class="module module-logo dark">
+                        <a  class="navbar-brand" href="{% url 'index' %}"contenteditable="false" style="cursor: pointer;">
+                            <img src="/static/assets2/images/logo-light.svg" alt="" width="88">
+                           
+                        </a>
+                          </div>
+                           
+                              <!--   <img class="logo-default scroll-hide" src="/static/images2/logo.png" alt="logo" />
+                                <img class="logo-default scroll-show" src="/static/images2/logo-2.png" alt="logo" />
+                                <img class="logo-retina" src="/static/images2/logo-retina.html" alt="logo" /> -->
+                     
+                        </div>
+                        <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown active">
+                                    <a href="{% url 'index' %}">Home </a>
+                                </li>
+                               <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'about' %}">About Us<span class="caret"></span></a>
+                                    <div class="mega-menu dropdown-menu multi-level row">
+                                        <div class="col">
+                                            <ul class="fa-ul no-icons text-s">
+                                                <li><a href="{% url 'about' %}">About</a></li>
+                                                <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col">
+                                            <ul class="fa-ul no-icons text-s">
+                                                <li>
+                                                    <img src="https://images.ctfassets.net/hrltx12pl8hq/a2hkMAaruSQ8haQZ4rBL9/8ff4a6f289b9ca3f4e6474f29793a74a/nature-image-for-website.jpg?fit=fill&w=600&h=400">
+                                                </li>
+                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="{% url 'offers' %}">Offers</a>
+                                </li>
+                                 <li class="dropdown">
+                                    <a href="{% url 'contact' %}">Contact</a>
+                                </li>
+                                 <li class="dropdown">
+                                    <a href="{% url 'book_a_table' %}">Book a table</a>
+                                </li>
+                            </ul>
+                            <a href="{% url 'order' %}" class="btn">Order</a>
+                             
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+        <div class="section-slider full-screen-title">
+            <div class="flexslider visible-dir-nav advanced-slider slider white" data-options="animation:fade">
+                <ul class="slides">
+                    <li data-slider-anima="fade-left" data-time="1000" data-timeline="asc" data-timeline-time="200">
+                        <div class="section-slide">
+                            <div class="bg-cover" style="background-image:url('/static/assets2/images/hd-14.jpg')">
+                            </div>
+                            <div class="container">
+                                <div class="container-middle">
+                                    <div class="container-inner">
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <h5 class="text-uppercase anima">If music be the food of love play on</h5>
+                                                <h2 class="text-bold text-xxl anima">DINNER EMOTIONS</h2>
+                                                <hr class="space xs" />
+                                                <p class="anima">
+                                                    Food, in the end, in our own tradition, is something holy. It's not about nutrients and calories.
+                                                    It's about sharing. It's about honesty. It's about identity and gstronomy food, taste and flavours.
+                                                    Tincidunt integer eu augue augue nunc elit dolor luctus.
+                                                </p>
+                                                <hr class="space s" />
+                                                <a href="{% url 'book_a_table' %}" class="btn btn-border btn-sm anima">RESERVATION</a>
+                                                {{cart_items}}
+                                                <hr class="space visible-sm" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li data-slider-anima="fade-left" data-time="1000" data-timeline="asc" data-timeline-time="200">
+                        <div class="section-slide">
+                            <div class="bg-cover" style="background-image:url('/static/assets2/images/hd-13.jpg')">
+                            </div>
+                            <div class="container">
+                                <div class="container-middle">
+                                    <div class="container-inner">
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <h5 class="text-uppercase anima">If music be the food of love play on</h5>
+                                                <h2 class="text-bold text-xxl anima">LOUNGE EXPERIENCE</h2>
+                                                <hr class="space xs" />
+                                                <p class="anima">
+                                                    Food, in the end, in our own tradition, is something holy. It's not about nutrients and calories.
+                                                    It's about sharing. It's about honesty. It's about identity and gstronomy food, taste and flavours.
+                                                    Tincidunt integer eu augue augue nunc elit dolor luctus.
+                                                </p>
+                                                <hr class="space s" />
+                                                <a href="{% url 'order' %}" class="btn btn-border btn-sm anima">VIEW THE MENU</a>
+                                                <hr class="space visible-sm" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="section-empty">
+            <div class="container content">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="img-box adv-img adv-img-full-content">
+                            <div class="img-box">
+                                <img src="/static/assets2/images/gallery/long-21.jpg" alt="" />
+                            </div>
+                            <a href="{% url 'order' %}" class="caption-bg img-box">
+                                <div class="caption">
+                                    <div class="inner">
+                                        <h2>Red wine</h2>
+                                        <p class="sub"> An explosion of flavours </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="img-box adv-img adv-img-full-content">
+                            <div class="img-box">
+                                <img src="/static/assets2/images/gallery/long-23.jpg" alt="" />
+                            </div>
+                            <a href="{% url 'order' %}" class="caption-bg img-box">
+                                <div class="caption">
+                                    <div class="inner">
+                                        <h2>White wine</h2>
+                                        <p class="sub"> An explosion of flavours </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="img-box adv-img adv-img-full-content">
+                            <div class="img-box">
+                                <img src="/static/assets2/images/gallery/long-20.jpg" alt="" />
+                            </div>
+                            <a href="{% url 'order' %}" class="caption-bg img-box">
+                                <div class="caption">
+                                    <div class="inner">
+                                        <h2>Distillateds</h2>
+                                        <p class="sub"> An explosion of flavours </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="img-box adv-img adv-img-full-content">
+                            <div class="img-box">
+                                <img src="/static/assets2/images/gallery/long-25.jpg" alt="" />
+                            </div>
+                            <a href="{% url 'order' %}" class="caption-bg img-box">
+                                <div class="caption">
+                                    <div class="inner">
+                                        <h2>Specialties</h2>
+                                        <p class="sub"> An explosion of flavours </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <hr class="space" />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="title-base text-left">
+                            <hr>
+                            <h2>Our story</h2>
+                            <p>Sweet and tiny like a chocolate</p>
+                        </div>
+                        <p>
+                            Tincidunt integer eu augue augue nunc elit dolor luctus placerat scelerisque euismod iaculis eu lacus nunc mi elit vehicula ut laoreet
+                            acaliquam sit amet justo nunc tempor metus vel. Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore eto.
+                        </p>
+                        <hr class="space xs">
+                        <img src="/static/assets2/images/sign-2.png" alt="">
+                    </div>
+                    <div class="col-md-6 fade-right">
+                        <div class="title-base text-left">
+                            <hr>
+                            <h2>Book a table</h2>
+                            <p>Sweet and tiny like a chocolate</p>
+                        </div>
+                        <a href="{% url 'book_a_table' %}">Click Here To Find a Table</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="section-bg-image parallax-window white" data-natural-height="850" data-natural-width="1920" data-parallax="scroll" data-image-src="/static/assets2/images/bg-25.jpg">
+            <div class="container content">
+                <div class="title-base">
+                    <hr />
+                    <h2>Client's feedback</h2>
+                    <p>What our clients think about us</p>
+                </div>
+                <div class="flexslider carousel white outer-navs" data-options="minWidth:200,itemMargin:30,numItems:3,controlNav:true,directionNav:true">
+                    <ul class="slides">
+                        <li>
+                            <div class="advs-box advs-box-top-icon niche-box-testimonails">
+                                <i class="fa text-xl circle onlycover" style="background-image:url('/static/assets2/images/users/user-1.jpg')"></i>
+                                <p>
+                                    Lorem ipsum dolor sitamet consectetur adipisicing elito sed do eiusmod tempor incididunt
+                                    ut labore et dolore magna aliqua. Ut enim ad minim veniam qrem aperiam.
+                                </p>
+                                <h5>Alfred Merlon - Italy</h5>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="advs-box advs-box-top-icon niche-box-testimonails">
+                                <i class="fa text-xl circle onlycover" style="background-image:url('/static/assets2/images/users/user-2.jpg')"></i>
+                                <p>
+                                    Lorem ipsum dolor sitamet consectetur adipisicing elito sed do eiusmod tempor incididunt
+                                    ut labore et dolore magna aliqua. Ut enim ad minim veniam qrem aperiam.
+                                </p>
+                                <h5>Mary Groot - Greece</h5>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="advs-box advs-box-top-icon niche-box-testimonails">
+                                <i class="fa text-xl circle onlycover" style="background-image:url('/static/assets2/images/users/user-3.jpg')"></i>
+                                <p>
+                                    Lorem ipsum dolor sitamet consectetur adipisicing elito sed do eiusmod tempor incididunt
+                                    ut labore et dolore magna aliqua. Ut enim ad minim veniam qrem aperiam.
+                                </p>
+                                <h5>Jessy Mallo - United States</h5>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="advs-box advs-box-top-icon niche-box-testimonails">
+                                <i class="fa text-xl circle onlycover" style="background-image:url('/static/assets2/images/users/user-4.jpg')"></i>
+                                <p>
+                                    Lorem ipsum dolor sitamet consectetur adipisicing elito sed do eiusmod tempor incididunt
+                                    ut labore et dolore magna aliqua. Ut enim ad minim veniam qrem aperiam.
+                                </p>
+                                <h5>Jack Dannio - Russian Federiation</h5>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="section-empty">
+            <div class="container content">
+                <div class="row vertical-row">
+                    <div class="col-md-4" data-anima="fade-left" data-timeline-time="300" data-timeline="asc">
+                        <div class="icon-box icon-box-right anima">
+                            <div class="icon-box-cell">
+                                <label class="text-m">Our wine</label>
+                                <p class="text-s">Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore mago</p>
+                            </div>
+                            <div class="icon-box-cell">
+                                <i class="im-wine-glass text-xl"></i>
+                            </div>
+                        </div>
+                        <hr class="space l" />
+                        <div class="icon-box icon-box-right anima">
+                            <div class="icon-box-cell">
+                                <label class="text-m">The secret tradition</label>
+                                <p class="text-s">Excaloto ipsum dolor sit amconsectetur adipiscing elitsed do eiusmod tempor incididunt utlabore etdolore mago</p>
+                            </div>
+                            <div class="icon-box-cell">
+                                <i class="im-newsvine text-xl"></i>
+                            </div>
+                        </div>
+                        <hr class="space l" />
+                        <div class="icon-box icon-box-right anima">
+                            <div class="icon-box-cell">
+                                <label class="text-m">Magical location</label>
+                                <p class="text-s">Partito ipsum dolor sitamet conse adipiscing elitsed do eiusmod tempor incididunt et dolore mago parto</p>
+                            </div>
+                            <div class="icon-box-cell">
+                                <i class="im-map-marker2 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="/static/assets2/images/bottle.jpg" alt="" />
+                    </div>
+                    <div class="col-md-4" data-anima="fade-right" data-timeline-time="300" data-timeline="asc">
+                        <div class="icon-box anima">
+                            <div class="icon-box-cell">
+                                <i class="im-ribbon-2 text-xl"></i>
+                            </div>
+                            <div class="icon-box-cell">
+                                <label class="text-m">Excellence</label>
+                                <p class="text-s">Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore mago</p>
+                            </div>
+                        </div>
+                        <hr class="space l" />
+                        <div class="icon-box anima">
+                            <div class="icon-box-cell">
+                                <i class="im-quill text-xl"></i>
+                            </div>
+                            <div class="icon-box-cell">
+                                <label class="text-m">Green style</label>
+                                <p class="text-s">Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore mago</p>
+                            </div>
+                        </div>
+                        <hr class="space l" />
+                        <div class="icon-box anima">
+                            <div class="icon-box-cell">
+                                <i class="im-receipt-3 text-xl"></i>
+                            </div>
+                            <div class="icon-box-cell">
+                                <label class="text-m">The tradition</label>
+                                <p class="text-s">Lorem ipsum dolor sit amet consectetur adipiscing elitsed do eiusmod tempor incididunt utlabore et dolore mago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-bg-color">
+            <div class="container content">
+                <div class="row box-steps">
+                    <div class="step-item col-md-4">
+                        <span class="step-number">1</span>
+                        <h3>Harvesting</h3>
+                        <p>
+                            Almoro beataeurus dis spernatur amque roullam doneco rem posuere tempora eveniet nibh perspiciatis cupidatato
+                            error per parturient justo perossio.
+                        </p>
+                    </div>
+                    <div class="step-item col-md-4">
+                        <span class="step-number">2</span>
+                        <h3>Relaxation</h3>
+                        <p>
+                            Illomus beatroullam doneco rem posuere temporaam donec rem posuere tempora eveniet nibh perspiciatis cupidatat
+                            error per parturient roullam.
+                        </p>
+                    </div>
+                    <div class="step-item col-md-4">
+                        <span class="step-number">3</span>
+                        <h3>Foundation</h3>
+                        <p>
+                            Illo mus bearoullam doneco rem posuere temporaam donec rem posuere tempora eveniet nibh perspiciatis cupidatat
+                            error per parturient justouo tempora.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-empty">
+            <div class="container content">
+                <div class="title-base">
+                    <hr />
+                    <h2>Wines collection</h2>
+                    <p>Our exlusive selection of wines</p>
+                </div>
+                <hr class="space s" />
+                <div class="coverflow-slider text-center" data-width="15.5" data-mobile-width="50" data-options="enableMousewheel:false">
+                    {% if menu_list %}
+                    <ul>
+                        {% for item in menu_list %}
+                        <li>
+                            <img src="{{MEDIA_URL}}{{item.image}}" class="image" alt="coverflow" />
+                            <p class="text-bold text-m no-margins">{{item.item_name}}</p>
+                            <p class="text-bold">{{item.price}}$</p>
+                            <!-- <p class="text-italic">2012</p> -->
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <!-- Slider Section Starts-->
+        <div class="section-bg-image parallax-window" data-sub-height="0" data-bleed="0" data-natural-height="850" data-natural-width="1920" data-parallax="scroll" 
+        data-image-src="/static/assets2/images/bg-26.jpg">
+            <div class="container content">
+                <div class="title-base white">
+                    <hr />
+                    <h2>Special Offers</h2>
+                    <p>Take a look to our limted time dayily promotions</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-center text-center">
+                        <hr class="space m" />
+                        <img src="../images/sign-2.png" alt="" />
+                        <hr class="space" />
+                        <div class="flexslider carousel" data-options="minWidth:200,itemMargin:15,numItems:3,controlNav:true,directionNav:true">
+                            <ul class="slides">
+                            {% if offers %}
+                                {% for item in offers %}
+                                <li>
+                                    <div class="advs-box niche-box-team" data-anima="scale-up" data-trigger="hover">
+                                        <a class="img-box">
+                                            <img class="anima" src="{{MEDIA_URL}}{{item.image}}" alt="" />
+                                        </a>
+                                        <div class="content-box">
+                                            <h2>{{item.title}}</h2>
+                                            <h4>{{item.description}}</h4>
+                                            <hr class="e" />
+                                            <ul class="list-check text-lg mb-0">
+                                                <li>Actual Price : ${{item.price}}</li>
+                                                <li>Discount : {{item.discount}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Slider Section Ends-->
+        
+        <div class="section-two-blocks blocks-right bg-white">
+            <div class="row">
+                <div class="col-md-6">
+                    <a class="img-box"><img src="/static/assets2/images/block-8.jpg" alt="" /></a>
+                </div>
+                <div class="col-md-6">
+                    <div class="content">
+                        <div class="title-base text-left">
+                            <hr />
+                            <h2>Red wines</h2>
+                            <p>Exclusive wines selection</p>
+                        </div>
+                        <div class="list-items">
+                            <div class="list-item list-item-img">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <i class="onlycover circle icon" style="background-image:url(/static/assets2/images/gallery/mini-1.jpg)"></i>
+                                        <h3>Lambrisco of Montecitorio</h3>
+                                        <p>
+                                            Duis aute irure dolo irure dolor in reprehenderit in voluptate velito esse cillume.
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span>9$</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-item list-item-img">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <i class="onlycover circle icon" style="background-image:url(/static/assets2/images/gallery/mini-2.jpg)"></i>
+                                        <h3>Bourdeux De Lemon</h3>
+                                        <p>
+                                            Duis aute irure dolo irure dolor in reprehenderit in voluptate velito esse cillume.
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span>15$</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-item list-item-img">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <i class="onlycover circle icon" style="background-image:url(/static/assets2/images/gallery/mini-3.jpg)"></i>
+                                        <h3>Red Storicola</h3>
+                                        <p>
+                                            Duis aute irure dolo irure dolor in reprehenderit in voluptate velito esse cillume.
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span>12$</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-item list-item-img">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <i class="onlycover circle icon" style="background-image:url(/static/assets2/images/gallery/mini-4.jpg)"></i>
+                                        <h3>Fragolino</h3>
+                                        <p>
+                                            Duis aute irure dolo irure dolor in reprehenderit in voluptate velito esse cillume.
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span>8$</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-two-blocks bg-white no-top-padding">
+            <div class="row">
+                <div class="col-md-6">
+                    <a class="img-box"><img src="/static/assets2/images/block-9.jpg" alt="" /></a>
+                </div>
+                <div class="col-md-6">
+                    <div class="content">
+                        <div class="title-base text-left">
+                            <hr />
+                            <h2>White wines</h2>
+                            <p>Exclusive wines selection</p>
+                        </div>
+                        <div class="list-items">
+                            <div class="list-item list-item-img">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <i class="onlycover circle icon" style="background-image:url(/static/assets2/images/gallery/mini-5.jpg)"></i>
+                                        <h3>Steamed king crab</h3>
+                                        <p>
+                                            Duis aute irure dolo irure dolor in reprehenderit in voluptate velito esse cillume.
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span>9$</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-item list-item-img">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <i class="onlycover circle icon" style="background-image:url(/static/assets2/images/gallery/mini-6.jpg)"></i>
+                                        <h3>Roast partridge</h3>
+                                        <p>
+                                            Duis aute irure dolo irure dolor in reprehenderit in voluptate velito esse cillume.
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span>9$</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-item list-item-img">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <i class="onlycover circle icon" style="background-image:url(/static/assets2/images/gallery/mini-7.jpg)"></i>
+                                        <h3>Salad of shaved fenne</h3>
+                                        <p>
+                                            Duis aute irure dolo irure dolor in reprehenderit in voluptate velito esse cillume.
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span>10$</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-item list-item-img">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <i class="onlycover circle icon" style="background-image:url(/static/assets2/images/gallery/mini-8.jpg)"></i>
+                                        <h3>Slow roasted white</h3>
+                                        <p>
+                                            Duis aute irure dolo irure dolor in reprehenderit in voluptate velito esse cillume.
+                                        </p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span>9.5$</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <i class="scroll-top scroll-top-mobile show fa fa-sort-asc"></i>
+           <!-- Footer -->
+        <footer id="footer" class="footer-base bg-dark dark">
+            
+            <div class="container">
+                <!-- Footer 1st Row -->
+                <div class="footer-first-row row">
+                    <div class="col-lg-3 text-center">
+                        <a href="{% url 'index' %}"><img src="assets/img/logo-light.svg" alt="" width="88" class="mt-5 mb-5"></a>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <h5 class="text-muted">What we are</h5>
+                        <ul class="list-posts">
+                            <li>
+                                <a href="{% url 'about' %}" class="title">About Us</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'gallery' %}" class="title">Gallery</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'offers' %}" class="title">Offers</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'contact' %}" class="title">Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                          <h5 class="text-muted mb-3">Social Media</h5>
+                        <div class="socail-icons">
+                            <a href="https://twitter.com/Varun_Digitals" target="_blank" class="icon icon-social icon-circle icon-sm rounded-circle  overflow-hidden d-inline-flex align-items-center justify-content-center text-gray me-2">
+                                <svg viewBox="0 0 24 24" aria-label="Twitter" role="img" width="18" height="18" fill="#ffffff" class="twsvg"><g><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></g></svg>
+                                <!-- <i class="fab fa-twitter"></i> -->
+                            </a>
+                            <a href="https://www.facebook.com/varundigitalmedia1/" target="_blank" class="icon icon-social icon-circle icon-sm rounded-circle  overflow-hidden d-inline-flex align-items-center justify-content-center text-gray me-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#ffffff" class="bi bi-facebook" viewBox="0 0 16 16">
+                                    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"></path>
+                                  </svg>
+                            </a>
+                            <a href="https://www.linkedin.com/company/varun-digital-media/" target="_blank" class="icon icon-social icon-circle icon-sm rounded-circle  overflow-hidden d-inline-flex align-items-center justify-content-center text-gray me-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#ffffff" class="bi bi-linkedin" viewBox="0 0 16 16">
+                                    <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"></path>
+                                  </svg>
+                            </a>
+                            <a href="https://www.instagram.com/varundigitalmedia1/" target="_blank" class="icon icon-social icon-circle icon-sm rounded-circle  overflow-hidden d-inline-flex align-items-center justify-content-center text-gray">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#ffffff" class="bi bi-instagram" viewBox="0 0 16 16">
+                                    <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"></path>
+                                  </svg>
+                            </a>
+                        </div>
+                        <h5 class="text-muted mt-5">Subscribe Us!</h5>
+                        <!-- MailChimp Form -->
+                        <form action="{% url 'subscribe_user' %}" method="POST">
+                           {% csrf_token %}
+                            <div class="input-group">
+                                <input name="email" id="email" type="email" class="form-control" placeholder="Tap your e-mail" required>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary btn-submit" type="submit">
+                                        <span class="description">Subscribe</span>
+                                        <span class="success">
+                                            <svg x="0px" y="0px" viewBox="0 0 32 32"><path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/></svg>
+                                        </span>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                      
+                     
+                    </div>
+                </div>
+                <!-- Footer 2nd Row -->
+                <div class="footer-second-row">
+                    <span class="text-muted text-center">Copyright Varun Digital Media 2024©. Made with love by Varun Digital Media.</span>
+                </div>
+            </div>
+
+            <!-- Back To Top -->
+            <a href="#" id="back-to-top"><i class="ti ti-angle-up"></i></a>
+       
+        <link rel="stylesheet" href="/static/assets2/js/iconsmind/line-icons.min.css">
+        <script async src="/static/assets2/js/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/static/assets2/js/imagesloaded.min.js"></script>
+        <!-- <script type="text/javascript" src="/static/assets2/js/parallax.min.js"></script> -->
+        <script type="text/javascript" async src='/static/assets2/js/isotope.min.js'></script>
+        <script src='/static/assets2/js/flexslider/jquery.flexslider-min.js'></script>
+        <script src='/static/assets2/js/jquery.slimscroll.min.js'></script>
+        <script src='/static/assets2/js/menu.js'></script>
+        <script src='/static/assets2/js/metis.menu.min.js'></script>
+        <link rel="stylesheet" href='/static/assets2/js/jquery.flipster.min.css'>
+        <script src='/static/assets2/js/jquery.flipster.min.js'></script>
+        <script src='/static/assets2/js/social.stream.min.js'></script>
+        <script src='/static/assets2/js/smooth.scroll.min.js'></script>
+    </footer>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+ <!-- Header -->
+    <header id="header" class="light">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <!-- Logo -->
+                    <div class="module module-logo dark">
+                        <a href="{% url 'index' %}">
+                            <img src="/static/assets/img/logo-light.svg" alt="" width="88">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <!-- Navigation -->
+                    <nav class="module module-navigation left mr-4">
+                        <ul id="nav-main" class="nav nav-main">
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            <li class="has-dropdown">
+                                <a href="#">About</a>
+                                <div class="dropdown-container">
+                                    <ul class="dropdown-mega">
+                                        <li><a href="{% url 'about' %}">About Us</a></li>
+                                        <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                                    </ul>
+                                    <div class="dropdown-image">
+                                        <img src="/static/assets/img/photos/dropdown-about.jpeg" alt="">
+                                    </div>
+                                </div>
+                            </li>
+                           
+                            <li><a href="{% url 'offers' %}">Offers</a></li>
+                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                            <li><a href="{% url 'book_a_table' %}">Book a table</a></li>
+                            
+                        </ul>
+                    </nav>
+                    <div class="module left">
+                        <a href="{% url 'order' %}" class="btn btn-outline-secondary"><span>Order</span></a>
+                        <!-- <a href="#" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModal"><span>Click to call</span></a> -->
+                    </div>                    
+                </div>
+                
+            </div>
+        </div>
+
+    </header>
+    <!-- Header / End -->
+
+
+    <!-- Header -->
+    <header id="header-mobile" class="light">
+
+        <div class="module module-nav-toggle">
+            <a href="#" id="nav-toggle" data-toggle="panel-mobile"><span></span><span></span><span></span><span></span></a>
+        </div>    
+
+        <div class="module module-logo">
+            <a href="index.html">
+                <img src="/static/assets/img/logo-horizontal-dark.svg" alt="">
+            </a>
+        </div>
+
+        <a href="#" class="module module-cart" data-toggle="panel-cart">
+            <i class="ti ti-shopping-cart"></i>
+            <span class="notification">2</span>
+        </a>
+
+    </header> 

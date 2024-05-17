@@ -1,0 +1,127 @@
+from django.shortcuts import render
+
+# Create your views here.
+from transformers import AutoTokenizer, AutoModelForTokenClassification, pipeline
+import cv2
+import numpy as np
+import pytesseract
+from PIL import Image
+import re
+import os.path
+from django.http import HttpResponse
+from .utils import name_extract,aadhar_front_ocr,aadhar_back_ocr,remove_duplicates,find_english_words,extract_addresses,get_address, save_base64_image
+from .models import AdharFile
+from rest_framework.response import Response
+from rest_framework import viewsets
+from tempfile import NamedTemporaryFile
+import uuid
+import os
+
+pytesseract.pytesseract.tesseract_cmd = r'C:\Users\ajay.b\AppData\Local\Programs\Tesseract-OCR\tesseract.exe'
+
+
+class ParseAdharView(viewsets.ModelViewSet):
+    allowed_methods = ["post"]
+    http_method_names = ["post"]
+    # permission_classes = [IsAuthenticated]
+      
+    def create(self, request, *args, **kwargs):
+        try:
+            file = request.FILES.get("adhar_file")
+            if file:
+                adhar_obj = AdharFile.objects.create(
+                    file = file
+                )
+                filename = f"media/{adhar_obj.file.name}"
+                text = aadhar_front_ocr(filename)
+                addr = aadhar_back_ocr(filename)
+                dob_pattern = r'(?:DOB|008): (\d{2}/\d{2}/\d{4})'
+                aadhar_pattern = r'(\d{4} \d{4} \d{4})'
+                sex_pattern = r'(MALE|FEMALE|Male|Female)'
+                name = name_extract(text)
+                address = get_address(addr)
+                try:
+                    if re.search(dob_pattern, text) is None:
+                        dob = re.search(r'Year of Birth : (\d{4})',text).group(1)
+                    else:
+                        dob = re.search(dob_pattern, text).group(1)
+                except Exception:
+                    dob = None
+                try:
+                    aadhar = re.search(aadhar_pattern, text).group(1)
+                except Exception:
+                    aadhar = None
+                try:
+                    sex = re.search(sex_pattern, text).group(1)
+                except Exception:
+                    sex = None
+                data = {
+                    "name": name,
+                    "dob" : dob,
+                    "adhar_number" : aadhar,
+                    "gender": sex,
+                    "address" : address,
+                    "image_url": adhar_obj.file.url
+                }
+                return Response(data, status=200)
+            else:
+                return Response({
+                        "status_code": 400,
+                        "message": "Adhar File is required"
+                    }, status=400)
+        except Exception as e:
+            return Response({
+                "status_code": 400,
+                "message": str(e)
+            }, status=400)
+    
+    
+# class ParseAdharView(viewsets.ModelViewSet):
+#     # serializer_class = AutoTestConfigurationSerializer
+#     # queryset = TestConfiguration.objects.all()
+#     allowed_methods = ["post"]
+#     http_method_names = ["post"]
+    # permission_classes = [IsAuthenticated]
+
+
+
+    # def create(self, request, *args, **kwargs):
+    #     try:
+    #         file_path = save_base64_image(request.data["image"], "media/")
+    #         with open(file_path, "rb") as file:
+    #             if file:
+    #                 model_path = "./my_model/xlm-roberta-large-finetuned-conll03-english/"
+    #                 tokenizer = AutoTokenizer.from_pretrained(model_path,model_max_length=512)
+    #                 model = AutoModelForTokenClassification.from_pretrained(model_path)
+    #                 classifier = pipeline("ner", model=model, tokenizer=tokenizer,aggregation_strategy="simple")
+    #                 text = aadhar_front_ocr(file)
+    #                 addr = aadhar_back_ocr(file)
+    #                 dob_pattern = r'(?:DOB|008): (\d{2}/\d{2}/\d{4})'
+    #                 aadhar_pattern = r'(\d{4} \d{4} \d{4})'
+    #                 sex_pattern = r'(MALE|FEMALE|Male|Female)'
+    #                 name = name_extract(text)
+    #                 address = get_address(addr)
+    #                 if re.search(dob_pattern, text) is None:
+    #                     dob = re.search(r'Year of Birth : (\d{4})',text).group(1)
+    #                 else:
+    #                     dob = re.search(dob_pattern, text).group(1)
+    #                 aadhar = re.search(aadhar_pattern, text).group(1)
+    #                 sex = re.search(sex_pattern, text).group(1)
+    #                 data = {
+    #                     "name": name,
+    #                     "dob" : dob,
+    #                     "adhar_number" : aadhar,
+    #                     "sex": sex,
+    #                     "address" : address
+    #                 }
+    #                 return render(request, "result.html", {"data": data})
+    #             else:
+    #                 return render(request, "result.html")
+    #     except Exception:
+    #         return Response(
+    #             {
+    #                 "message":"Not a valid adhar card"
+    #             },
+    #             status=400
+    #         )
+        

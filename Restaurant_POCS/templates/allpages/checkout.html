@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+
+<!-- Meta -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Title -->
+<title>Soup - Restaurant with Online Ordering System Template</title>
+
+
+{% include 'include/topstyle.html' %}
+</head>
+
+<body>
+
+<!-- Body Wrapper -->
+<div id="body-wrapper-" class="animsition-">
+    {% include 'include/header.html' %}
+    
+    <div class="header-title ken-burn white" style="background:url(/static/assets2/images/bg-23.jpg)">
+        <div class="container">
+            <div class="title-base">
+                <hr class="anima" />
+                <h1>Checkout</h1>
+                <p>Some informations about our restaurant</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div id="content">
+
+    
+
+        <!-- Section -->
+        <section class="section-ch bg-light">
+            <div class="container">
+            <form class="" action="{% url 'checkout' %}" method="POST">
+                {% csrf_token %}
+                <div class="row">
+           
+                    <div class="col-xl-7 col-lg-7 ">
+                        <div class="bg-white p-4 p-md-5 mb-4">
+                            <h4 class="border-bottom pb-4"><i class="ti ti-user mr-3 text-primary"></i>Basic informations                                                                                 
+                                                        
+                            </h4>
+                            <div class="row mb-5">
+                                <div class="form-group col-sm-6">
+                                    <label>Full Name:</label>
+                                    <input type="text" class="form-control" name="fname" required>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label>Street and number:</label>
+                                    <input type="text" class="form-control" name="street_number" required>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label>City:</label>
+                                    <input type="text" class="form-control" name="city" required>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label>Phone number:</label>
+                                    <input type="text" class="form-control" name="phone_number" required>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label>E-mail address:</label>
+                                    <input type="email" class="form-control" name="email_adress" required>
+                                </div>
+                            </div>                          
+                        </div>
+                        <div class="text-left">
+                            {% if cart_items|length > 0 %}
+                            <button class="btn btn-primary btn-lg"><span>Order now!</span></button>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-xl-5  col-lg-5">
+                        <div class="shadow bg-white stick-to-content mb-4">
+                            <div class="bg-dark dark p-4"><h5 class="mb-0">You order</h5></div>      
+                            <!----{{cart_items}}-->
+                            <table class="table-cart" style="width: 100%;font-size: 11px; ">  
+                                <tr style="font-size: 11px;font-weight: bold;">
+                                    <td class="col-1 " style="padding-left: 10px;"></td>
+                                    <td class="col-2 " style="padding-left: 10px;">Image</td>
+                                    <td class="col-6">  Item</td>
+                                    <td class="col-1 " >Qty</td>
+                                    <td class="col-1 ">Item</td>
+                                    <td class="col-4 " >Total Price</td>
+                                </tr>
+                                
+
+                                {% for items_data in cart_items %}
+                                <tr>
+                                    <td class="col-1 " style="padding-left: 10px;">{{ forloop.counter }}</td>
+                                    <td class="col-2 " style="padding-left: 10px;"><img src="{{MEDIA_URL}}{{items_data.item_image}}" alt="" style="width: 75px;	border: 1px solid #88889161;"></td>
+                                    <td class="col-6 text-left text-muted title" >
+                                        <span class="name"><strong>{{items_data.item_name}}</strong></span>
+                                        <span class="caption text-muted">
+                                            <div style="margin-top: -10px;">
+                                             {% for subitem in items_data.subitems %}
+                                        {{subitem}}{% if not forloop.last %}, {% endif %}
+                                        {%endfor%} :
+                                        {% for subitemprice in items_data.subitems_price %}
+                                        {{subitemprice}}{% if not forloop.last %}, {% endif %}
+                                        {%endfor%}</div></span>
+                                    </td>
+                                    <td class="col-1 " style="padding-left: 10px;">{{items_data.quantity}}</td>
+                                    <td class="col-1 "  style="padding-left: 10px;">$ {{items_data.itemprice}}</td>
+                                    <td class="col-3 " style="padding-left: 10px;text-align: center;">$ {{items_data.total_price}}</td> 
+                                </tr> 
+                                {% endfor %}
+                                {% if data.subitetitle %}
+                                <tr>
+                                    <td class="title" colspan="2">
+                                    <div class="row">
+                                        <div class="col-9 text-left text-muted">
+                                            {% for subitemtitle in data.subitetitle%}
+                                            {{subitemtitle}},
+                                            {% endfor %} -
+                                        </div>
+                                        <div class="col-3">${{data.subtotal }}</div>
+                                    </div>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                            </table>
+                            <div class="cart-summary">
+                                {% if cart_items|length > 0 %}
+                                <div class="pd">
+                                    <div class="co text-left text-muted">Order total:</div>
+                                    <div class="co"><strong>${{grandtotal}}</strong></div>
+                                </div>   
+                                {% else %}
+                                <div >
+                                    <div style="text-align: center;">Order is empty</div>
+                                    
+                                </div>
+                                {% endif %}
+                                <hr class="hr-sm">
+                                <div class="pd text-md">
+                                    {% if cart_items|length > 0 %}
+                                    <div class="col-9 text-left text-muted">Total:</div>
+                                    <div class="col-3"><strong>${{grandtotal}}</strong> </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <input type="hidden" name='itemid' value='{{data.item_id }}'>
+                            <input type="hidden" name='subitem_id' value='{{data.subitem_ids }}'>
+                            <input type="hidden" name='total_price' value='{{data.totalitemprice }}'>  
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+
+        </section>
+
+       
+
+    </div>
+    <!-- Content / End -->
+
+
+    {% include 'include/footer.html' %}
+</body> 
+</html>

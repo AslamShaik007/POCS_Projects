@@ -1,0 +1,89 @@
+{% extends 'controlPanel/includes/base.html' %}
+{% load static %} <!-- THIS IS TO LOAD THE STATIC FOLDER -->
+<!-- {#  {% load globalfun %}  #} -->
+
+<!-- THIS IS FOR PAGE TITLE -->
+{% block title %}
+  {{page_title}}
+{% endblock title %}
+
+<!-- THIS IS FOR CONTENTS OF THE PAGE -->
+{% block pagecontents %}
+
+<section id="content-wrapper">
+
+  <div class="row mt-3 p-2">
+
+    <div class="col-md-9">
+      <div class="breadcrumb-wrapper">
+        <span>
+          	<a title="" href="{% url 'dashboard' %}"><i class="fa fa-angle-left fa-dlt" aria-hidden="true"></i> &nbsp;&nbsp;Dashboard&nbsp;</a>
+        </span>
+        <span class="ttm-bread-sep"> / </span>
+        <span> Contact Us Details </span>
+    </div>
+
+  </div>
+
+  <div class="row mt-1 mb-5">
+    <section id="content-wrapper">
+      <div class="row  g-6 mb-6 mt-3">
+        <div class="col-sm-12">
+          <div class="card p-4">
+            <div class="row">
+              <div class="col-md-6">
+                <h1 class="d-heading font-semibold text-muted text-sm d-block mb-2">Admin Profile Details</h1>
+              </div>
+
+            </div>
+
+            <div class="row mt-3">
+                <table id="dtReportstable" class="display nowrap" style="width:100%">
+                  <thead>
+                    <tr>
+                        <th>S.NO.</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <!--<th>Photo</th>-->
+                        <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    {% if listings %}
+
+                        {% for value in listings %}
+
+                        <tr>
+                          <td>{{ forloop.counter }}</td>
+                          <td>{{value.full_name}}</td>
+                          <td>{{value.phone_number}}</td>
+                          <td>{{value.email_address}}</td>
+                          <!--<td><a target="_blank" href="{{MEDIA_URL}}{{ value.photo }}"><img class="img-fluid img-thumbnail" style="height: 150px; width: 250px;" src="{{MEDIA_URL}}{{ value.photo }}"></a></td>-->
+                          <td>
+                            <a href="{% url 'update_Admin' value.id %}">
+                                <img src="{% static 'cpanel/images/edit.png' %}" alt="Edit">
+                            </a>
+                          </td>
+                        </tr>
+
+                        {% endfor %}
+                    {% endif %}
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+</section>
+
+{% endblock pagecontents %}
+
+{% block udfooterscripts %}
+
+{% endblock udfooterscripts %}
