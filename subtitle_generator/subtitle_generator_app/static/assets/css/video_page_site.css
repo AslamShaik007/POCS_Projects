@@ -1,0 +1,583 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
+
+body {
+  font-family: 'Mukta', sans-serif;
+  background-color: white;
+}
+
+:root {
+    --LightGrey-Color: #f5f5f5;
+    --LightMediumGrey-Color: #959595;
+    --LightGrey-Color3: #F2F2F2;
+    --DarkBlue-Color: #381f7a;
+    --LightVoilet-Color: #e9ebff;
+    --DarkVoilet-Color: #5966db;
+    --DarkBlue-Color4: #066298;
+
+    --LightGreen-Color: #2fb44b;
+    --LightSkyBlue-Color: #3dc8e8;
+    --LightOranger-Color: #e46a40;
+}
+
+.LightGrey_Color {
+    color: var(--LightGrey-Color);
+}
+
+.LightGrey_BgColor {
+    background-color: var(--LightGrey-Color);
+}
+
+.LgithMediumGrey_Color {
+    color: var(--LightMediumGrey-Color);
+}
+
+.LgithMediumGrey_BgColor {
+    background-color: var(--LightMediumGrey-Color);
+}
+
+.DarkBlue_Color {
+    color: var(--DarkBlue-Color);
+}
+
+.DarkBlue_BgColor {
+    background-color: var(--DarkBlue-Color);
+}
+
+.LightVoilet_Color {
+    color: var(--LightVoilet-Color);
+}
+
+.LightVoilet_BgColor {
+    background-color: var(--LightVoilet-Color);
+}
+
+.DarkBlue3_Color {
+    color: var(--DarkVoilet-Color);
+}
+
+.DarkBlue3_BgColor {
+    background-color: var(--DarkVoilet-Color);
+}
+
+.DarkBlue4_Color {
+    color: var(--DarkBlue-Color4);
+}
+
+.DarkBlue4_BgColor {
+    background-color: var(--DarkBlue-Color4);
+}
+
+.LightGreen_Color {
+    color: var(--LightGreen-Color);
+}
+
+.LightGreen_BgColor {
+    background-color: var(--LightGreen-Color);
+}
+
+.LightOrange_Color {
+    color: var(--LightOranger-Color);
+}
+
+.LightOrange_BgColor {
+    background-color: var(--LightOranger-Color);
+}
+
+.BlugGradBtn {
+    background: linear-gradient(90deg, #24397A 3.64%, #2B4596 50.15%, #314EA9 96.82%);
+}
+
+.BlugGradBtn:hover {
+    background: linear-gradient(90deg, #314EA9 36.82%, #2B4596 50.15%,  #24397A 93.64%);
+    box-shadow: 10px 10px 10px #D6D6D6;
+}
+
+.font_12 {
+    font-size: 0.75rem;
+}
+  
+.font_14 {
+    font-size: 0.875rem;
+}
+  
+.font_16 {
+    font-size: 1rem;
+}
+  
+.font_17 {
+    font-size: 1.0625rem;
+}
+  
+.font_18 {
+    font-size: 1.125rem;
+}
+  
+.font_19 {
+    font-size: 1.1875rem;
+}
+  
+.font_20 {
+    font-size: 1.25rem; 
+}
+
+.font_21{
+    font-size: 1.3125rem;
+}
+
+.font_22 {
+    font-size: 1.375rem;
+}
+
+.font_23 {
+    font-size: 1.4375rem;
+}
+
+.font_24 {
+    font-size: 1.5rem;
+}
+
+.font_25 {
+    font-size: 1.5625rem;
+}
+
+.font_26 {
+    font-size: 1.625rem;
+}
+
+.font_27 {
+    font-size: 1.6875rem;
+}
+
+.font_28 {
+    font-size: 1.75rem;
+}
+
+.font_29 {
+    font-size: 1.8125rem;
+}
+
+.font_30 {
+    font-size: 1.875rem;
+}
+
+.font_31 {
+    font-size: 1.9375rem;
+}
+
+.font_32 {
+    font-size: 2rem;
+}
+
+.font_33 {
+    font-size: 2.0625rem;
+}
+
+.font_34 {
+    font-size: 2.125rem;
+}
+
+.font_35 {
+    font-size: 2.1875rem;
+}
+
+.font_36 {
+    font-size: 2.25rem;
+}
+
+.font_37 {
+    font-size: 2.3125rem;
+}
+
+.font_38 {
+    font-size: 2.375rem;
+}
+
+.font_39 {
+    font-size: 2.4375rem;
+}
+
+.font_40 {
+    font-size: 2.5rem;
+}
+
+.font_50 {
+    font-size: 3.125rem;
+}
+
+.font_70 {
+    font-size: 4.375rem;
+}
+
+.font_73 {
+    font-size: 4.5625rem;
+}
+
+.font_75 {
+    font-size: 4.6875rem;
+}
+
+.font_weight_300 {
+    font-weight: 300;
+}
+
+.font_weight_400 {
+    font-weight: 400;
+}
+  
+.font_weight_500 {
+    font-weight: 500;
+}
+  
+.font_weight_600 {
+    font-weight: 600;
+}
+  
+.font_weight_700 {
+    font-weight: 700;
+}
+  
+.font_weight_800 {
+    font-weight: 800;
+}
+  
+.font_weight_900 {
+    font-weight: 900;
+}
+
+#UploadVideoBodyBg {
+    background-color: #F1F3FF;
+    /* background-image: url(../Images/Vector_bg.png); */
+    background-repeat: no-repeat;
+    background-position: top right;
+    min-height: 100vh;
+}
+
+#VideoUploadBodyBackGround {
+    background-image: url(./../Images/Layer_2.png);
+    background-repeat: no-repeat;
+    background-position: right bottom; 
+    min-height: 100vh;
+}
+/* 
+.VectorImgBackground {
+    background-image: url(../Images/A_A_1.png);
+    background-repeat: no-repeat;
+    background-position: left 70% bottom;
+} */
+
+.Logo_Black_Img {
+    width: 18%;
+}
+
+.FormHeader {
+    border-radius: 20px 20px 0px 0px;
+}
+
+.EmotonDetectorForm {
+    border-radius: 20px;
+}
+
+/**
+ * FilePond Custom Styles
+ */
+
+ 
+.FileUploadLable1 {
+    position: relative;
+    padding: 2.5rem 3.3rem;
+    background: var(--LightVoilet-Color);
+    display: inline-block;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 10px;
+    z-index: 1;
+    /* border: 2px solid red; */
+}
+
+.FileUploadLable1:hover {
+    background: var(--DarkVoilet-Color);
+    color: #fff;
+    cursor: pointer;
+    transition: 0.2s all;
+}
+
+#upload1[type=file] {
+    position: absolute;
+    right: -9999px;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 2;
+}
+
+#upload1 {
+    border: 2px solid red;
+}
+
+#upload1[type=submit] {
+    position: relative;
+    padding: 1rem 3rem;
+    background: var(--DarkVoilet-Color);
+    display: inline-block;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 0;
+    color: #fff;
+}
+
+#upload1[type=submit]:hover {
+    background: var(--DarkVoilet-Color);
+    color: #fff;
+    cursor: pointer;
+    transition: 0.2s all;
+}
+
+#upload2[type=file] {
+    position: absolute;
+    right: -9999px;
+    visibility: hidden;
+    opacity: 0;
+}
+
+#upload2[type=submit] {
+    position: relative;
+    padding: 1rem 3rem;
+    background: var(--DarkVoilet-Color);
+    display: inline-block;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 0;
+    color: #fff;
+}
+
+#upload2[type=submit]:hover {
+    background: var(--DarkVoilet-Color);
+    color: #fff;
+    cursor: pointer;
+    transition: 0.2s all;
+}
+
+
+.FileUploadLable2 {
+    position: relative;
+    padding: 4rem 3rem;
+    background: var(--LightGrey-Color);
+    display: inline-block;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px dashed #aaa;
+}
+.FileUploadLable2:hover {
+    background: var(--LightGrey-Color);
+    color: var(--DarkVoilet-Color);
+    cursor: pointer;
+    transition: 0.2s all;
+}
+
+.FileUploadContainer1.files {
+    background: var(--LightVoilet-Color);
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 10px;
+}
+/*   
+.FileUploadContainer1.files ul {
+    list-style: none;
+    padding: 0;
+    max-height: 150px;
+    overflow: auto;
+}
+.FileUploadContainer1.files ul li {
+    padding: 0.5rem 0;
+    padding-right: 2rem;
+    position: relative;
+}
+.FileUploadContainer1.files ul li i {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translatey(-50%);
+} */
+/*   
+.FileUploadContainer1.container {
+    width: 100%;
+    padding: 0 2rem;
+} */
+
+.FileUploadContainer2.files {
+    background: var(--LightVoilet-Color);
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 10px;
+}
+/*   
+.FileUploadContainer2.files ul {
+    list-style: none;
+    padding: 0;
+    max-height: 150px;
+    overflow: auto;
+}
+.FileUploadContainer2.files ul li {
+    padding: 0.5rem 0;
+    padding-right: 2rem;
+    position: relative;
+}
+.FileUploadContainer2.files ul li i {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translatey(-50%);
+}
+.FileUploadContainer2.container {
+    width: 100%;
+    padding: 0 2rem;
+} */
+
+/* span.file-size {
+    color: #999;
+    padding-left: 0.5rem;
+} */
+
+#FileUploadProgressBars .progress {
+    height: 0.3rem;
+  
+}
+
+#FileUploadProgressBars .bg-success {
+    background-color: var(--LightGreen-Color) !important;
+}
+
+#EmotonDetectorFormBtnContainer .bg-warning {
+    background-color: var(--LightOranger-Color) !important;
+    color: #fff !important;
+}
+
+
+.Icon_Image {
+    width: 150px;
+    opacity: 0.5;
+}
+
+.Icon_Img_1 {
+    top:170px;
+}
+
+.Icon_Img_2 {
+    right:45%;
+    bottom: 93%;
+}
+
+.Icon_Img_3 {
+    left: 100px;
+    bottom:0%;
+}
+
+.Icon_Img_4 {
+    top:85%;
+    right: 45%;
+}
+
+.Upload_Image_Icon {
+    width: 70px;
+}
+
+.FileUploadContainer3.files {
+    background: var(--LightVoilet-Color);
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 10px;
+}
+
+.FileUploadLable3 {
+    position: relative;
+    width: 100%;
+    min-height: 100px;
+    /* background: white; */
+    background-image: url(./../Images/Layer_1.png);
+    background-repeat: no-repeat;
+    background-position: center; 
+    display: inline-block;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 10px;
+    /* border: 3px dashed #6b77e0; */
+    /* border: 2px solid red; */
+}
+
+.FileUploadLable3:hover {
+    /* background: var(--DarkVoilet-Color); */
+    color: #fff;
+    cursor: pointer;
+    transition: 0.2s all;
+}
+
+#upload3[type=file] {
+    position: absolute;
+    right: -9999px;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 2;
+}
+
+#upload3 {
+    border: 2px solid red;
+}
+
+#upload3[type=submit] {
+    position: relative;
+    padding: 1rem 3rem;
+    background: var(--DarkVoilet-Color);
+    display: inline-block;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 0;
+    color: #fff;
+}
+
+#upload3[type=submit]:hover {
+    background: var(--DarkVoilet-Color);
+    color: #fff;
+    cursor: pointer;
+    transition: 0.2s all;
+}
+
+#uploadVideoFilesTitle {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* .EmotonDetectorVideoUploadContainer {
+    background-image: url(./../Images/Layer_1.png);
+    background-repeat: no-repeat;
+    background-position: top right; 
+} */
+
+#UpoloadVideoContainer {
+    position: relative;
+    z-index: 3;
+}
+
+.LightGrey_Color3 {
+    color: var(--LightGrey-Color3);
+}
+
+.LightGrey_BgColor3 {
+    background-color: var(--LightGrey-Color3) !important;
+}
+
+.websiteLink {
+    width: 230px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+

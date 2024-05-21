@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+
+    <style>
+        .form-container {
+            padding-left: 200px;
+            padding-top: 200px;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="video_file">
+            <label for="language">Select Language:</label>
+            <select name="language" id="language">
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+                <!-- Add more language options as needed -->
+            </select>
+            <br>
+            <input type="submit" value="Upload and Generate Subtitles">
+        </form>
+
+        <video width="640" height="480" controls>
+            <source src="{% url 'video_file' %}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>        
+
+
+        <!-- Display the selected language -->
+        {% if selected_language %}
+        <p>Selected Language: {{ selected_language }}</p>
+        {% endif %}
+    </div>
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
